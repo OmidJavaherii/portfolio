@@ -9,8 +9,8 @@ export function ProjectsSection() {
   const projects = [
     {
       title: "Happy New year",
-      description: "A fully responsive creative web for celebrating new year.",
-      imageSrc: "/images/profile.jpg",
+      description: "Responsive creative web for happy new year supporting two languages.",
+      imageSrc: "/images/project1.png",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vite"],
       link: "https://github.com/OmidJavaherii/my-404-page/",
       preview: "https://my-404-page-phi.vercel.app/",
@@ -19,7 +19,7 @@ export function ProjectsSection() {
       title: "Restaurant Menu Website",
       description:
         "A fully responsive e-commerce platform with cart, checkout, and payment integration.",
-      imageSrc: "/images/profile.jpg",
+      imageSrc: "/images/project2.png",
       tags: [
         "Next.js",
         "TypeScript",
@@ -37,7 +37,7 @@ export function ProjectsSection() {
       title: "Portfolio Website",
       description:
         "A modern and responsive portfolio website showcasing projects and skills.",
-      imageSrc: "/images/profile.jpg",
+      imageSrc: "/images/project3.png",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
       link: "https://github.com/OmidJavaherii/portfolio/",
       preview: "https://portfolio-umber-gamma-29.vercel.app/",
@@ -46,7 +46,7 @@ export function ProjectsSection() {
       title: "Game APP",
       description:
         "Developed an interactive Tic-Tac-Toe game with a smooth and responsive UI.",
-      imageSrc: "/images/profile.jpg",
+      imageSrc: "/images/project4.png",
       tags: ["React", "TypeScript", "Context API", "PWA"],
       link: "https://github.com/OmidJavaherii/tic-tac-toe/",
       preview: "https://tic-tac-toe-ten-tau-23.vercel.app/",
@@ -55,7 +55,7 @@ export function ProjectsSection() {
       title: "Dashboard App",
       description:
         "An admin dashboard with data visualization, user management, and analytics.",
-      imageSrc: "/images/profile.jpg",
+      imageSrc: "/images/project5.png",
       tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
       link: "https://github.com/OmidJavaherii/dashboard-react/",
       preview: "https://omidjavaherii-dashboard-admin.liara.run/",

@@ -27,7 +27,15 @@ export function Card({
       <div className="aspect-video relative">
         {imageSrc && (
           <div
-            className="h-full bg-cover bg-center m-4 rounded-lg"
+            onClick={() => preview && window.open(preview, '_blank', 'noopener,noreferrer')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                preview && window.open(preview, '_blank', 'noopener,noreferrer')
+              }
+            }}
+            className="h-full bg-cover bg-center m-4 rounded-lg cursor-pointer"
             style={{ backgroundImage: `url(${imageSrc})` }}
           />
         )}
