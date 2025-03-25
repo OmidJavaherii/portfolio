@@ -5,6 +5,13 @@ export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
 
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
     // Create a transporter using SMTP
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -12,12 +19,16 @@ export async function POST(req: Request) {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      secure: true,
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
 
     // Email content
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to yourself
+      from: `"${name}" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
@@ -43,7 +54,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Failed to send email. Please try again later.' },
       { status: 500 }
     );
   }
