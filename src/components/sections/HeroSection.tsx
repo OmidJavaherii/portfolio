@@ -21,34 +21,37 @@ export function HeroSection() {
             </p>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Hi, I'm <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">John Doe</span>
+              Hi, I&apos;m <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Omid Javaheri</span>
             </h1>
             
-            <p className="text-muted text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8">
-              A passionate Full-Stack Developer dedicated to creating amazing web experiences 
-              that combine stunning design with flawless functionality.
+            <p className="text-muted text-lg mb-8 max-w-2xl">
+              I&apos;m a passionate frontend developer with expertise in building modern web applications.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <Button size="lg" variant="primary">
+                <a href="#projects">
                 View My Projects
+                </a>
               </Button>
               <Button size="lg" variant="outline">
+                <a href="#contact">
                 Contact Me
+                </a>
               </Button>
             </div>
             
             <div className="mt-12 flex flex-wrap gap-8 justify-center lg:justify-start text-center lg:text-left">
               <div>
-                <div className="font-bold text-3xl text-primary">98%</div>
+                <div className="font-bold text-3xl text-primary">90%</div>
                 <div className="text-muted">Client Satisfaction</div>
               </div>
               <div>
-                <div className="font-bold text-3xl text-primary">50+</div>
+                <div className="font-bold text-3xl text-primary">15+</div>
                 <div className="text-muted">Projects Completed</div>
               </div>
               <div>
-                <div className="font-bold text-3xl text-primary">5+</div>
+                <div className="font-bold text-3xl text-primary">2+</div>
                 <div className="text-muted">Years Experience</div>
               </div>
             </div>
@@ -59,12 +62,19 @@ export function HeroSection() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-secondary opacity-20 blur-2xl animate-pulse" />
               <div className="relative h-full w-full rounded-full border-2 border-accent/20 overflow-hidden">
                 <Image
-                  src="/images/profile.svg"
+                  src="/images/profile.jpg"
                   alt="Profile Placeholder"
                   fill
                   className="object-cover"
                   priority
                 />
+                {/* <Image
+                  src="/images/profile.svg"
+                  alt="Profile Placeholder"
+                  fill
+                  className="object-cover"
+                  priority
+                /> */}
               </div>
             </div>
             
@@ -76,6 +86,16 @@ export function HeroSection() {
             <div className="absolute top-0 right-0 bg-card p-4 rounded-full shadow-lg">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                 <span className="text-xl">⚛️</span>
+              </div>
+            </div>
+            <div className="absolute top-20 left-16 bg-card p-4 rounded-full shadow-lg">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <span className="text-xl">🧑‍💻</span>
+              </div>
+            </div>
+            <div className="absolute bottom-20 right-16 bg-card p-4 rounded-full shadow-lg">
+              <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                <span className="text-xl">💾</span>
               </div>
             </div>
             <div className="absolute bottom-0 left-0 bg-card p-4 rounded-full shadow-lg">

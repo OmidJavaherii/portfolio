@@ -1,80 +1,80 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import { Button } from "./Button";
 
 interface CardProps {
   title: string;
   description?: string;
   imageSrc?: string;
-  imageAlt?: string;
   link?: string;
-  linkText?: string;
+  preview?: string;
   tags?: string[];
-  className?: string;
-  onClick?: () => void;
-  children?: React.ReactNode;
 }
 
 export function Card({
   title,
   description,
   imageSrc,
-  imageAlt = '',
   link,
-  linkText = 'View',
+  preview,
   tags = [],
-  className = '',
-  onClick,
-  children,
-}: CardProps) {
-  const CardComponent = onClick || link ? 'a' : 'div';
-  const href = link || (onClick ? '#' : undefined);
-  
+}: CardProps): React.ReactElement {
   return (
-    <CardComponent
-      href={href}
-      onClick={onClick}
-      className={`bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift ${className}`}
+    <div 
+      className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500"
     >
-      {imageSrc && (
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            src={imageSrc}
-            alt={imageAlt || title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover"
+      <div className="aspect-video relative">
+        {imageSrc && (
+          <div
+            className="h-full bg-cover bg-center m-4 rounded-lg"
+            style={{ backgroundImage: `url(${imageSrc})` }}
           />
-        </div>
-      )}
-      <div className="p-5">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        {description && <p className="text-muted mb-4">{description}</p>}
-        
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-background"
+        )}
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          {description && <p className="text-muted mb-4">{description}</p>}
+
+          {tags && tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {tags.map((tag: string) => (
+                <span
+                  key={tag}
+                  className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          <div className="flex gap-2">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                className="w-full"
+                rel="noopener noreferrer"
               >
-                {tag}
-              </span>
-            ))}
+                <Button variant="outline" size="sm" className="w-full h-10 cursor-pointer">
+                  View Project
+                </Button>
+              </a>
+            )}
+            {preview && (
+              <a
+                href={preview}
+                target="_blank"
+                className="w-full"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" size="sm" className="w-full h-10 cursor-pointer">
+                  Preview
+                </Button>
+              </a>
+            )}
           </div>
-        )}
-        
-        {children}
-        
-        {link && linkText && (
-          <div className="mt-4">
-            <span className="text-primary font-medium hover:underline">
-              {linkText} →
-            </span>
-          </div>
-        )}
+        </div>
       </div>
-    </CardComponent>
+    </div>
   );
-} 
+}

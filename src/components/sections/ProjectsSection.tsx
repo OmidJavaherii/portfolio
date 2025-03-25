@@ -1,45 +1,70 @@
 "use client";
 
-import React from 'react';
-import { Card } from '../ui/Card';
-import { Button } from '../ui/Button';
-import { AnimatedSection } from '../ui/AnimatedSection';
+import React from "react";
+import { Card } from "../ui/Card";
+import { Button } from "../ui/Button";
+import { AnimatedSection } from "../ui/AnimatedSection";
 
 export function ProjectsSection() {
   const projects = [
     {
-      title: 'E-commerce Website',
-      description: 'A fully responsive e-commerce platform with cart, checkout, and payment integration.',
-      image: '/images/project1.jpg',
-      tags: ['React', 'Next.js', 'Tailwind CSS', 'Stripe'],
-      link: '#'
+      title: "Happy New year",
+      description: "A fully responsive creative web for celebrating new year.",
+      imageSrc: "/images/profile.jpg",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vite"],
+      link: "https://github.com/OmidJavaherii/my-404-page/",
+      preview: "https://my-404-page-phi.vercel.app/",
     },
     {
-      title: 'Portfolio Website',
-      description: 'A modern and responsive portfolio website showcasing projects and skills.',
-      image: '/images/project2.jpg',
-      tags: ['React', 'Tailwind CSS', 'Framer Motion'],
-      link: '#'
+      title: "Restaurant Menu Website",
+      description:
+        "A fully responsive e-commerce platform with cart, checkout, and payment integration.",
+      imageSrc: "/images/profile.jpg",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Zustand",
+        "React Query",
+        "React Hook Form",
+        "Toastify",
+        "MUI",
+        "Tailwind CSS",
+      ],
+      link: "https://github.com/OmidJavaherii/restaurant-menu/",
+      preview: "https://restaurant-menu-rose-eight.vercel.app/",
     },
     {
-      title: 'Dashboard App',
-      description: 'An admin dashboard with data visualization, user management, and analytics.',
-      image: '/images/project3.jpg',
-      tags: ['React', 'TypeScript', 'Material UI', 'Chart.js'],
-      link: '#'
+      title: "Portfolio Website",
+      description:
+        "A modern and responsive portfolio website showcasing projects and skills.",
+      imageSrc: "/images/profile.jpg",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      link: "https://github.com/OmidJavaherii/portfolio/",
+      preview: "https://portfolio-website-one-tau.vercel.app/",
     },
     {
-      title: 'Mobile App',
-      description: 'A cross-platform mobile app for task management and productivity.',
-      image: '/images/project4.jpg',
-      tags: ['React Native', 'Firebase', 'Redux'],
-      link: '#'
-    }
+      title: "Game APP",
+      description:
+        "Developed an interactive Tic-Tac-Toe game with a smooth and responsive UI.",
+      imageSrc: "/images/profile.jpg",
+      tags: ["React", "TypeScript", "Context API", "PWA"],
+      link: "https://github.com/OmidJavaherii/tic-tac-toe/",
+      preview: "https://tic-tac-toe-ten-tau-23.vercel.app/",
+    },
+    {
+      title: "Dashboard App",
+      description:
+        "An admin dashboard with data visualization, user management, and analytics.",
+      imageSrc: "/images/profile.jpg",
+      tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
+      link: "https://github.com/OmidJavaherii/dashboard-react/",
+      preview: "https://omidjavaherii-dashboard-admin.liara.run/",
+    },
   ];
 
   return (
-    <AnimatedSection 
-      id="projects" 
+    <AnimatedSection
+      id="projects"
       className="py-20 bg-background"
       animation="fadeIn"
       delay={0.1}
@@ -48,41 +73,37 @@ export function ProjectsSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
           <p className="text-muted max-w-2xl mx-auto">
-            Here are some of my recent projects. Each project represents a unique challenge and solution.
+            Here are some of my recent projects. Each project represents a
+            unique challenge and solution.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden hover-lift transition-all duration-300">
-              <div className="aspect-video relative bg-accent/10">
-                {project.image && (
-                  <div 
-                    className="w-full h-full bg-cover bg-center" 
-                    style={{ backgroundImage: `url(${project.image})` }}
-                  />
-                )}
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-muted mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span key={idx} className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Button variant="outline" size="sm" className="w-full">View Project</Button>
-              </div>
-            </Card>
+            <Card
+              key={index}
+              title={project.title}
+              description={project.description}
+              imageSrc={project.imageSrc}
+              tags={project.tags}
+              link={project.link}
+              preview={project.preview}
+            />
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
-          <Button variant="secondary">View All Projects</Button>
+          <Button variant="secondary">
+            <a
+              href="https://github.com/omidjavaherii"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View All Projects
+            </a>
+          </Button>
         </div>
       </div>
     </AnimatedSection>
   );
-} 
+}

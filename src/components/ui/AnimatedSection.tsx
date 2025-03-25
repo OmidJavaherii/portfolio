@@ -43,7 +43,7 @@ export function AnimatedSection({
     <section
       id={id}
       ref={ref as React.RefObject<HTMLElement>}
-      className={`py-16 md:py-24 ${animationClasses} ${className}`}
+      className={`py-12 md:py-20 ${animationClasses} ${className}`}
       style={delayStyle}
     >
       {withContainer ? (

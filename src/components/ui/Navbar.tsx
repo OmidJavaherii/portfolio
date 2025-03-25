@@ -19,7 +19,8 @@ interface NavbarProps {
 }
 
 export function Navbar({ 
-  logo = 'Portfolio', 
+  logo = 'Omid Javaheri', 
+  // logo = 'Portfolio', 
   navItems = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
@@ -29,7 +30,7 @@ export function Navbar({
   ],
   ctaButton = {
     label: 'Resume',
-    href: '#',
+    href: './Resume-Omid-Javaheri.pdf',
   }
 }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +81,7 @@ export function Navbar({
             
             {ctaButton && (
               <Button variant="primary" size="sm">
-                <a href={ctaButton.href} target="_blank" rel="noopener noreferrer">
+                <a href={ctaButton.href} download rel="noopener noreferrer">
                   {ctaButton.label}
                 </a>
               </Button>

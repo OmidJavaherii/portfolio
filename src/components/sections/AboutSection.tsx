@@ -1,15 +1,14 @@
 "use client";
 
-import React from 'react';
-import { Section } from '../ui/Section';
-import { Button } from '../ui/Button';
-import { AnimatedSection } from '../ui/AnimatedSection';
-import { AnimatedNotes } from '../ui/Note';
+import React from "react";
+import { Button } from "../ui/Button";
+import { AnimatedSection } from "../ui/AnimatedSection";
+import { AnimatedNotes } from "../ui/Note";
 
 export function AboutSection() {
   return (
-    <AnimatedSection 
-      id="about" 
+    <AnimatedSection
+      id="about"
       className="py-20 bg-background"
       animation="fadeIn"
       delay={0.1}
@@ -21,40 +20,58 @@ export function AboutSection() {
             Get to know more about me and my journey in web development.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h3 className="text-2xl font-bold mb-4">My Journey</h3>
             <p className="mb-4">
-              With over 5 years of experience in web development, I've worked on a diverse range of projects from small business 
-              websites to large-scale web applications. My passion for creating intuitive and beautiful user interfaces has driven 
-              me to continuously improve my skills and stay up-to-date with the latest technologies.
+              I’m a Front-End Developer with over 2 years of experience,
+              blending a background in project management from 20+ smart
+              building projects and 85%+ customer satisfaction. Skilled in
+              React, TypeScript, and Next.js. I thrive on crafting
+              high-performance, user-focused experiences, consistently achieving
+              85%+ customer satisfaction. My knack for quickly mastering new
+              technologies drives me to deliver impactful digital
+              solutions—explore my work to see how I can bring value to your
+              next project.
             </p>
-            
+
             <p className="mb-4">
-              I believe in writing clean, maintainable code and following best practices. My approach to development focuses 
-              on creating scalable solutions that can grow with your business.
+              Excited to join a team that values impactful digital solutions,
+              actively looking for a challenging role to leverage my skills.
             </p>
-            
-            <h3 className="text-2xl font-bold mb-4 mt-8">Education & Certification</h3>
+
+            <h3 className="text-2xl font-bold mb-4 mt-8">
+              Education & Certification
+            </h3>
             <ul className="space-y-2 mb-6">
               <li className="flex items-start">
                 <span className="mr-2">•</span>
-                <span>BSc in Computer Science - University of Technology (2018-2022)</span>
+                <span>
+                  BSc in Computer Software Engineering - Islamic Azad University
+                  Central Tehran Branch, Iran (2023-2025)
+                </span>
               </li>
               <li className="flex items-start">
                 <span className="mr-2">•</span>
-                <span>Certified Web Developer - Web Development Institute (2020)</span>
+                <span>
+                  Associate of Electrical and Electronics Engineering - Esfahan
+                  Technical and Vocational College (2021-2023)
+                </span>
               </li>
               <li className="flex items-start">
                 <span className="mr-2">•</span>
-                <span>Advanced JavaScript Certification - CodeMasters (2021)</span>
+                <span>Computer Science - CS50x (2023)</span>
               </li>
             </ul>
-            
-            <Button variant="secondary" className="mt-4">Download Resume</Button>
+
+            <Button variant="secondary" className="mt-4">
+              <a href="./Resume-Omid-Javaheri.pdf" download>
+                Download Resume
+              </a>
+            </Button>
           </div>
-          
+
           <div>
             <AnimatedNotes />
           </div>
@@ -62,4 +79,4 @@ export function AboutSection() {
       </div>
     </AnimatedSection>
   );
-} 
+}

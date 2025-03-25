@@ -1,20 +1,34 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/Navbar";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "John Doe - Full Stack Developer",
-  description: "Portfolio website showcasing my projects and skills in web development",
+  title: "Omid Javaheri | Portfolio",
+  description: "Personal portfolio website showcasing my projects, skills, and experience as a frontend developer.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ]
+  },
+  themeColor: '#0EA5E9',
+  viewport: "width=device-width, initial-scale=1",
+  keywords: ["portfolio", "frontend developer", "web development", "React", "Next.js"],
+  authors: [{ name: "Omid Javaheri" }],
+  creator: "Omid Javaheri",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="font-sans antialiased">
+      <body className={inter.className}>
         <Navbar />
         {children}
       </body>

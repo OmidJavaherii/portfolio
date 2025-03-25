@@ -152,8 +152,12 @@ export function AnimatedNotes() {
         </Note>
         
         <Note type="info" title="Fun fact" animated={false}>
-          I've contributed to open source projects that have over 1000+ stars on GitHub.
+          I&apos;ve contributed to open source projects that have over 1000+ stars on GitHub.
         </Note>
+
+        <p className="text-sm text-muted">
+          Don&apos;t forget to check out my other projects!
+        </p>
       </div>
     </AnimatedElement>
   );

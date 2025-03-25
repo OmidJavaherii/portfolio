@@ -6,33 +6,43 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 export function SkillsSection() {
   const skillCategories = [
     {
-      name: "Frontend",
+      name: "Frontend Development",
       skills: [
-        { name: "HTML/CSS", level: 90 },
         { name: "JavaScript", level: 85 },
+        { name: "TypeScript", level: 70 },
         { name: "React", level: 80 },
         { name: "Next.js", level: 75 },
-        { name: "TypeScript", level: 70 },
+        { name: "Zustand", level: 60 },
       ]
     },
     {
-      name: "Backend",
+      name: "CSS Frameworks",
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express", level: 80 },
-        { name: "MongoDB", level: 75 },
-        { name: "SQL", level: 70 },
-        { name: "Firebase", level: 65 },
-      ]
-    },
-    {
-      name: "Other",
-      skills: [
-        { name: "UI/UX Design", level: 75 },
-        { name: "Git/GitHub", level: 85 },
+        { name: "HTML/CSS", level: 90 },
         { name: "Responsive Design", level: 90 },
-        { name: "Testing", level: 65 },
-        { name: "SEO", level: 70 },
+        { name: "Tailwind CSS", level: 85 },
+        { name: "Material UI", level: 80 },
+        { name: "Bootstrap", level: 85 },
+      ]
+    },
+    // {
+    //   name: "Backend",
+    //   skills: [
+    //     { name: "Node.js", level: 85 },
+    //     { name: "Express", level: 80 },
+    //     { name: "MongoDB", level: 75 },
+    //     { name: "SQL", level: 70 },
+    //     { name: "Firebase", level: 65 },
+    //   ]
+    // },
+    {
+      name: "Other Skills",
+      skills: [
+        { name: "Git/GitHub", level: 85 },
+        { name: "UI/UX Design", level: 65 },
+        { name: "Rest API", level: 80 },
+        { name: "SEO", level: 40 },
+        { name: "Testing", level: 10 },
       ]
     }
   ];
@@ -47,8 +57,8 @@ export function SkillsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
-          <p className="text-muted max-w-2xl mx-auto">
-            I've acquired a diverse set of skills throughout my journey as a web developer.
+          <p className="text-muted text-center mb-12">
+            I&apos;m constantly learning and exploring new technologies to stay at the forefront of web development.
           </p>
         </div>
         
