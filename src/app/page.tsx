@@ -8,11 +8,15 @@ import { SkillsSection } from "@/components/sections/SkillsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { Footer } from "@/components/ui/Footer";
+import { register } from "./register-sw";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Register service worker
+    register();
+
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);

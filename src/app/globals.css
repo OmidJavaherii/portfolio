@@ -60,11 +60,11 @@
 }
 
 @keyframes slideUp {
-  from { 
-    transform: translateY(20px);
+  from {
+    transform: translateY(100%);
     opacity: 0;
   }
-  to { 
+  to {
     transform: translateY(0);
     opacity: 1;
   }
@@ -144,7 +144,7 @@ body {
 }
 
 .slideUp {
-  animation: slideUp 0.6s ease forwards;
+  animation: slideUp 0.3s ease-out forwards;
 }
 
 .slideRight {
@@ -399,4 +399,46 @@ html {
 @keyframes l8-2 {
   0%,49.9% {background-position:0 38px, right 18px bottom 18px, right 18px top 18px,18px 18px,18px 100%,100% 100%,100% 0,0 0}
   50%,100% {background-position:right 18px bottom 18px, right 18px top 18px, 18px 18px,18px 100%,100% 100%,100% 0,0 0,bottom 18px left 0}
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* iOS Safe Areas */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iOS Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+/* iOS Status Bar */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .navbar {
+    padding-top: calc(env(safe-area-inset-top) + 1rem);
+  }
+}
+
+/* iOS Web App Styles */
+@supports (-webkit-touch-callout: none) {
+  .ios-app {
+    min-height: -webkit-fill-available;
+  }
+  
+  body {
+    min-height: -webkit-fill-available;
+  }
 }
