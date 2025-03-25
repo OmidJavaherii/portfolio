@@ -76,7 +76,27 @@ export function Footer({
   ],
 }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
 
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <AnimatedSection animation="fadeIn" delay={0.1} className="bg-card py-16">
       <div className="container mx-auto px-4">
@@ -111,6 +131,7 @@ export function Footer({
                   <Link
                     href={item.href}
                     className="text-muted hover:text-primary transition-colors"
+                    onClick={(e) => handleScroll(e, item.href)}
                   >
                     {item.label}
                   </Link>

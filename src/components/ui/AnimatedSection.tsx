@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface AnimatedSectionProps {
@@ -15,7 +15,7 @@ interface AnimatedSectionProps {
   rootMargin?: string;
 }
 
-export function AnimatedSection({
+export const AnimatedSection = memo(function AnimatedSection({
   id,
   className = '',
   children,
@@ -32,19 +32,29 @@ export function AnimatedSection({
     once: true,
   });
 
-  const animationClasses = 
-    isIntersecting 
-      ? `reveal active ${animation}` 
-      : 'reveal';
-  
-  const delayStyle = delay ? { animationDelay: `${delay}s` } : {};
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isIntersecting) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isIntersecting, delay]);
+
+  const baseClasses = 'py-12 md:py-20 transition-all duration-700 ease-out';
+  const animationStyles = {
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+  };
   
   return (
     <section
       id={id}
       ref={ref as React.RefObject<HTMLElement>}
-      className={`py-12 md:py-20 ${animationClasses} ${className}`}
-      style={delayStyle}
+      className={`${baseClasses} ${className}`}
+      style={animationStyles}
     >
       {withContainer ? (
         <div className={`container mx-auto px-4 md:px-6 ${containerClassName}`}>
@@ -55,7 +65,7 @@ export function AnimatedSection({
       )}
     </section>
   );
-}
+});
 
 interface AnimatedElementProps {
   as?: React.ElementType;
@@ -68,7 +78,7 @@ interface AnimatedElementProps {
   style?: React.CSSProperties;
 }
 
-export function AnimatedElement({
+export const AnimatedElement = memo(function AnimatedElement({
   as: Component = 'div',
   children,
   className = '',
@@ -84,23 +94,31 @@ export function AnimatedElement({
     once: true,
   });
 
-  const animationClasses = 
-    isIntersecting 
-      ? `reveal active ${animation}` 
-      : 'reveal';
-  
-  const combinedStyle = {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isIntersecting) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isIntersecting, delay]);
+
+  const baseClasses = 'transition-all duration-700 ease-out';
+  const animationStyles = {
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
     ...style,
-    ...(delay ? { animationDelay: `${delay}s` } : {}),
   };
 
   return (
     <Component
       ref={ref as React.RefObject<HTMLElement>}
-      className={`${animationClasses} ${className}`}
-      style={combinedStyle}
+      className={`${baseClasses} ${className}`}
+      style={animationStyles}
     >
       {children}
     </Component>
   );
-} 
+}); 

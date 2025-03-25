@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { AnimatedSection } from "../ui/AnimatedSection";
+import { AnimatedElement } from "../ui/AnimatedSection";
 
 interface Experience {
   title: string;
@@ -20,7 +19,7 @@ const experiences: Experience[] = [
     description: [
       "I have been learning and practicing Front-End Development for nearly two years",
       "I have completed 10+ projects using Next.js, React, TypeScript, and JavaScript",
-      "I’ve built 5+ responsive web applications, focusing on performance and user experience",
+      "I've built 5+ responsive web applications, focusing on performance and user experience",
       "Committed to continuous learning, I adapt to new technologies each year to stay updated with modern front-end trends",
     ],
     technologies: [
@@ -54,11 +53,6 @@ const experiences: Experience[] = [
 ];
 
 export function ExperienceSection() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   return (
     <AnimatedSection
       id="experience"
@@ -67,29 +61,28 @@ export function ExperienceSection() {
       delay={0.1}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+        <AnimatedElement
+          as="div"
           className="text-center mb-16"
+          animation="fadeIn"
+          delay={0.2}
         >
           <h2 className="text-3xl font-bold mb-4">Experience</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             My professional journey and work experience
           </p>
-        </motion.div>
+        </AnimatedElement>
 
         <div className="space-y-12">
           {experiences.map((experience, index) => (
-            <motion.div
+            <AnimatedElement
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              as="div"
               className="relative pl-8 border-l-2 border-blue-500 dark:border-blue-400"
+              animation="slideLeft"
+              delay={0.3 + index * 0.1}
             >
-              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400" />
+              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:border-blue-400" />
               <div className="mb-4">
                 <h3 className="text-xl font-semibold">{experience.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400">
@@ -116,7 +109,7 @@ export function ExperienceSection() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </AnimatedElement>
           ))}
         </div>
       </div>
