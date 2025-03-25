@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Button } from './Button';
-import { X } from 'lucide-react';
+import { X, Share2 } from 'lucide-react';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -14,6 +14,7 @@ interface CustomWindow extends Window {
 }
 
 export function InstallPWA() {
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
 
@@ -26,6 +27,8 @@ export function InstallPWA() {
       const handler = (e: BeforeInstallPromptEvent) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
         e.preventDefault();
+        // Stash the event so it can be triggered later
+        setDeferredPrompt(e);
         // Show the prompt
         setIsVisible(true);
       };
@@ -43,6 +46,18 @@ export function InstallPWA() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  const handleInstallClick = async () => {
+    if (isIOS) {
+      return;
+    } else if (deferredPrompt) {
+      // Show the install prompt for other browsers
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      setDeferredPrompt(null);
+    }
+    setIsVisible(false);
+  };
 
   if (!isVisible) return null;
 
@@ -67,7 +82,22 @@ export function InstallPWA() {
           <X className="w-5 h-5" />
         </button>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex gap-2">
+        <Button
+          variant="primary"
+          size="sm"
+          className="flex-1"
+          onClick={handleInstallClick}
+        >
+          {isIOS ? (
+            <div className="flex items-center justify-center gap-2">
+              <Share2 className="w-4 h-4" />
+              Add to Home Screen
+            </div>
+          ) : (
+            'Install'
+          )}
+        </Button>
         <Button
           variant="outline"
           size="sm"
