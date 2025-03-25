@@ -1,0 +1,88 @@
+"use client";
+
+import React from 'react';
+import Image from 'next/image';
+import { Button } from '../ui/Button';
+import { AnimatedSection } from '../ui/AnimatedSection';
+
+export function HeroSection() {
+  return (
+    <AnimatedSection 
+      id="hero" 
+      className="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
+      animation="fadeIn"
+      delay={0.1}
+    >
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center lg:text-left">
+            <p className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-accent/10 text-accent">
+              Welcome to my portfolio
+            </p>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Hi, I'm <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">John Doe</span>
+            </h1>
+            
+            <p className="text-muted text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8">
+              A passionate Full-Stack Developer dedicated to creating amazing web experiences 
+              that combine stunning design with flawless functionality.
+            </p>
+            
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <Button size="lg" variant="primary">
+                View My Projects
+              </Button>
+              <Button size="lg" variant="outline">
+                Contact Me
+              </Button>
+            </div>
+            
+            <div className="mt-12 flex flex-wrap gap-8 justify-center lg:justify-start text-center lg:text-left">
+              <div>
+                <div className="font-bold text-3xl text-primary">98%</div>
+                <div className="text-muted">Client Satisfaction</div>
+              </div>
+              <div>
+                <div className="font-bold text-3xl text-primary">50+</div>
+                <div className="text-muted">Projects Completed</div>
+              </div>
+              <div>
+                <div className="font-bold text-3xl text-primary">5+</div>
+                <div className="text-muted">Years Experience</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="relative w-72 h-72 md:w-96 md:h-96 mx-auto">
+              {/* Placeholder for your photo - replace src with your actual photo path */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-secondary opacity-20 blur-2xl animate-pulse" />
+              <div className="relative h-full w-full rounded-full border-2 border-accent/20 overflow-hidden">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="John Doe"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
+            
+            {/* Tech stack icons or other decorative elements can go here */}
+            <div className="absolute top-0 right-0 bg-card p-4 rounded-full shadow-lg">
+              <div className="w-10 h-10 rounded-full bg-accent/20" />
+            </div>
+            <div className="absolute bottom-0 left-0 bg-card p-4 rounded-full shadow-lg">
+              <div className="w-10 h-10 rounded-full bg-primary/20" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </AnimatedSection>
+  );
+} 
