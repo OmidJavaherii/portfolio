@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Button } from './Button';
-import { X, Share2 } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -46,29 +46,6 @@ export function InstallPWA() {
       return () => clearTimeout(timer);
     }
   }, []);
-
-  const handleInstallClick = async () => {
-    if (isIOS) {
-      // For iOS, show the share sheet
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: 'Omid Javaheri Portfolio',
-            text: 'Check out my portfolio!',
-            url: window.location.href,
-          });
-        } catch (error) {
-          console.log('Error sharing:', error);
-        }
-      }
-    } else if (deferredPrompt) {
-      // Show the install prompt for other browsers
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      setDeferredPrompt(null);
-    }
-    setIsVisible(false);
-  };
 
   if (!isVisible) return null;
 
