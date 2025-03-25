@@ -31,17 +31,14 @@ export const AnimatedSection = memo(function AnimatedSection({
   const { ref, isIntersecting } = useScrollReveal({
     threshold,
     rootMargin,
-    once,
   });
 
   const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (isIntersecting) {
       const timer = setTimeout(() => {
         setIsVisible(true);
-        setHasAnimated(true);
       }, delay * 1000);
       return () => clearTimeout(timer);
     } else if (!once) {
@@ -114,17 +111,14 @@ export const AnimatedElement = memo(function AnimatedElement({
   const { ref, isIntersecting } = useScrollReveal({
     threshold,
     rootMargin,
-    once,
   });
 
   const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (isIntersecting) {
       const timer = setTimeout(() => {
         setIsVisible(true);
-        setHasAnimated(true);
       }, delay * 1000);
       return () => clearTimeout(timer);
     } else if (!once) {

@@ -5,13 +5,11 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 interface ScrollRevealOptions {
   threshold?: number;
   rootMargin?: string;
-  once?: boolean;
 }
 
 export function useScrollReveal({
   threshold = 0.1,
   rootMargin = '0px',
-  once = false,
 }: ScrollRevealOptions = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const ref = useRef<HTMLElement>(null);
