@@ -44,9 +44,24 @@ export const AnimatedSection = memo(function AnimatedSection({
   }, [isIntersecting, delay]);
 
   const baseClasses = 'py-12 md:py-20 transition-all duration-700 ease-out';
+  const getTransform = () => {
+    switch (animation) {
+      case 'slideUp':
+        return isVisible ? 'translateY(0)' : 'translateY(20px)';
+      case 'slideRight':
+        return isVisible ? 'translateX(0)' : 'translateX(-20px)';
+      case 'slideLeft':
+        return isVisible ? 'translateX(0)' : 'translateX(20px)';
+      case 'fadeInScale':
+        return isVisible ? 'scale(1)' : 'scale(0.95)';
+      default:
+        return isVisible ? 'translateY(0)' : 'translateY(20px)';
+    }
+  };
+
   const animationStyles = {
     opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+    transform: getTransform(),
   };
   
   return (
@@ -106,9 +121,28 @@ export const AnimatedElement = memo(function AnimatedElement({
   }, [isIntersecting, delay]);
 
   const baseClasses = 'transition-all duration-700 ease-out';
+  const getTransform = () => {
+    switch (animation) {
+      case 'slideUp':
+        return isVisible ? 'translateY(0)' : 'translateY(20px)';
+      case 'slideRight':
+        return isVisible ? 'translateX(0)' : 'translateX(-20px)';
+      case 'slideLeft':
+        return isVisible ? 'translateX(0)' : 'translateX(20px)';
+      case 'fadeInScale':
+        return isVisible ? 'scale(1)' : 'scale(0.95)';
+      case 'float':
+        return isVisible ? 'translateY(0)' : 'translateY(10px)';
+      case 'bounce':
+        return isVisible ? 'translateY(0)' : 'translateY(20px)';
+      default:
+        return isVisible ? 'translateY(0)' : 'translateY(20px)';
+    }
+  };
+
   const animationStyles = {
     opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+    transform: getTransform(),
     ...style,
   };
 
