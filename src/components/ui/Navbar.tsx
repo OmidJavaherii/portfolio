@@ -22,8 +22,6 @@ interface NavbarProps {
 }
 
 export function Navbar({ 
-  logo = 'Omid Javaheri', 
-  // logo = 'Portfolio', 
   navItems = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },

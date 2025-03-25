@@ -20,6 +20,12 @@ export function Card({
   preview,
   tags = [],
 }: CardProps): React.ReactElement {
+  const handlePreviewClick = () => {
+    if (preview) {
+      window.open(preview, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div 
       className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500"
@@ -27,15 +33,15 @@ export function Card({
       <div className="aspect-video relative">
         {imageSrc && (
           <div
-            onClick={() => preview && window.open(preview, '_blank', 'noopener,noreferrer')}
+            onClick={handlePreviewClick}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
-                preview && window.open(preview, '_blank', 'noopener,noreferrer')
+                handlePreviewClick();
               }
             }}
-            className="h-full bg-cover bg-center m-4 rounded-lg cursor-pointer"
+            className="h-full bg-cover bg-center m-6 mt-8 rounded-lg cursor-pointer"
             style={{ backgroundImage: `url(${imageSrc})` }}
           />
         )}
