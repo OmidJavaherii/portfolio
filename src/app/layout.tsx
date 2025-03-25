@@ -14,7 +14,6 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' }
     ]
   },
-  themeColor: '#0EA5E9',
   viewport: "width=device-width, initial-scale=1",
   keywords: ["portfolio", "frontend developer", "web development", "React", "Next.js"],
   authors: [{ name: "Omid Javaheri" }],

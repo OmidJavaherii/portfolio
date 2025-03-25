@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { ProjectsSection } from '@/components/sections/ProjectsSection';
-import { SkillsSection } from '@/components/sections/SkillsSection';
-import { ContactSection } from '@/components/sections/ContactSection';
-import { Footer } from '@/components/ui/Footer';
+import React, { useState, useEffect } from "react";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Footer } from "@/components/ui/Footer";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +15,8 @@ export default function Home() {
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
-    
+    }, 2000);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -24,7 +24,7 @@ export default function Home() {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-background z-50">
         <div className="flex flex-col items-center">
-          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+          <div className="loader mb-4"></div>
           <p className="text-lg font-medium">Loading portfolio...</p>
         </div>
       </div>
