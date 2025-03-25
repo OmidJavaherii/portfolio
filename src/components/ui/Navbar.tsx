@@ -53,6 +53,25 @@ export function Navbar({
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <AnimatedSection
       className={`fixed pt-2.5 h-10 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -73,6 +92,7 @@ export function Navbar({
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleScroll(e, item.href)}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   pathname === item.href ? 'text-primary' : 'text-muted'
                 }`}
@@ -110,7 +130,7 @@ export function Navbar({
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleScroll(e, item.href)}
                 className={`text-sm font-medium transition-all duration-300 hover:text-primary transform hover:scale-110 ${
                   pathname === item.href ? 'text-primary' : 'text-muted'
                 }`}

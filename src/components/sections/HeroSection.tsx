@@ -8,7 +8,7 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 export function HeroSection() {
   return (
     <AnimatedSection 
-      id="hero" 
+      id="home" 
       className="pt-32 pb-16 md:pt-26 sm:pt-20 max-sm:pt-16 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
       animation="fadeIn"
       delay={0.1}
