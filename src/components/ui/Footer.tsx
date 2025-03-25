@@ -82,7 +82,7 @@ export function Footer({
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-2xl font-bold mb-4">John Doe</h3>
+            <h3 className="text-2xl font-bold mb-4">Omid Javaheri</h3>
             <p className="text-muted mb-6">
               FrontEnd developer passionate about creating beautiful and
               functional web experiences.
@@ -123,8 +123,12 @@ export function Footer({
             <h3 className="text-lg font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-muted">
               <li>Tehran, Iran</li>
-              <li>omid138089@gmail.com</li>
-              <li>+98 913 810 0702</li>
+              <li>
+                <a href="mailto:omid138089@gmail.com">omid138089@gmail.com</a>
+              </li>
+              <li>
+                <a href="tel:+989138100702">+98 913 810 0702</a>
+              </li>
             </ul>
           </div>
         </div>

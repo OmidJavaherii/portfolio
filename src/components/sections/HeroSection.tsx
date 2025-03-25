@@ -9,7 +9,7 @@ export function HeroSection() {
   return (
     <AnimatedSection 
       id="hero" 
-      className="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
+      className="pt-32 pb-16 md:pt-26 sm:pt-20 max-sm:pt-16 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
       animation="fadeIn"
       delay={0.1}
     >
@@ -79,8 +79,10 @@ export function HeroSection() {
             </div>
             
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
+            <div className="absolute -top-5 -right-3 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+            <div className="absolute top-8 left-11 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+            <div className="absolute bottom-5 right-7 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
+            <div className="absolute -bottom-7 -left-7 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
             
             {/* Tech stack icons */}
             <div className="absolute top-0 right-0 bg-card p-4 rounded-full shadow-lg">
@@ -88,12 +90,12 @@ export function HeroSection() {
                 <span className="text-xl">⚛️</span>
               </div>
             </div>
-            <div className="absolute top-20 left-16 bg-card p-4 rounded-full shadow-lg">
+            <div className="absolute top-1/8 left-1/12 bg-card p-4 rounded-full shadow-lg">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                 <span className="text-xl">🧑‍💻</span>
               </div>
             </div>
-            <div className="absolute bottom-20 right-16 bg-card p-4 rounded-full shadow-lg">
+            <div className="absolute bottom-1/8 right-1/12 bg-card p-4 rounded-full shadow-lg">
               <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
                 <span className="text-xl">💾</span>
               </div>

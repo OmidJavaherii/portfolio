@@ -40,7 +40,7 @@ export function ProjectsSection() {
       imageSrc: "/images/profile.jpg",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
       link: "https://github.com/OmidJavaherii/portfolio/",
-      preview: "https://portfolio-website-one-tau.vercel.app/",
+      preview: "https://portfolio-umber-gamma-29.vercel.app/",
     },
     {
       title: "Game APP",
