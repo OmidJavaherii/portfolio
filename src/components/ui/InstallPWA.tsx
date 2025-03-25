@@ -14,7 +14,6 @@ interface CustomWindow extends Window {
 }
 
 export function InstallPWA() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
 
@@ -27,8 +26,6 @@ export function InstallPWA() {
       const handler = (e: BeforeInstallPromptEvent) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
         e.preventDefault();
-        // Stash the event so it can be triggered later
-        setDeferredPrompt(e);
         // Show the prompt
         setIsVisible(true);
       };
