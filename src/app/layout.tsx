@@ -8,16 +8,20 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Omid Javaheri | Portfolio",
-  description: "Personal portfolio website showcasing my projects, skills, and experience as a frontend developer.",
+  description:
+    "Personal portfolio website showcasing my projects, skills, and experience as a frontend developer.",
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' }
-    ]
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
-  viewport: "width=device-width, initial-scale=1",
-  keywords: ["portfolio", "frontend developer", "web development", "React", "Next.js"],
+  keywords: [
+    "portfolio",
+    "frontend developer",
+    "web development",
+    "React",
+    "Next.js",
+  ],
   authors: [{ name: "Omid Javaheri" }],
-  creator: "Omid Javaheri"
+  creator: "Omid Javaheri",
 };
 
 export default function RootLayout({
@@ -26,12 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className="scroll-smooth"
+    >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={inter.className}>
         <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <ScrollToTop />
       </body>
     </html>

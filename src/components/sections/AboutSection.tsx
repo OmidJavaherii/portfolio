@@ -29,8 +29,7 @@ export function AboutSection() {
               blending a background in project management from 20+ smart
               building projects and 85%+ customer satisfaction. Skilled in
               React, TypeScript, and Next.js. I thrive on crafting
-              high-performance, user-focused experiences, consistently achieving
-              85%+ customer satisfaction. My knack for quickly mastering new
+              high-performance, user-focused experiences. My knack for quickly mastering new
               technologies drives me to deliver impactful digital
               solutions—explore my work to see how I can bring value to your
               next project.
