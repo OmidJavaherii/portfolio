@@ -93,22 +93,7 @@ export function InstallPWA() {
           <X className="w-5 h-5" />
         </button>
       </div>
-      <div className="mt-4 flex gap-2">
-        <Button
-          variant="primary"
-          size="sm"
-          className="flex-1"
-          onClick={handleInstallClick}
-        >
-          {isIOS ? (
-            <div className="flex items-center justify-center gap-2">
-              <Share2 className="w-4 h-4" />
-              Add to Home Screen
-            </div>
-          ) : (
-            'Install'
-          )}
-        </Button>
+      <div className="mt-4">
         <Button
           variant="outline"
           size="sm"
