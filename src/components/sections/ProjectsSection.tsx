@@ -3,7 +3,7 @@
 import React from "react";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
-import { AnimatedSection } from "../ui/AnimatedSection";
+import { AnimatedElement, AnimatedSection } from "../ui/AnimatedSection";
 
 export function ProjectsSection() {
   const projects = [
@@ -78,6 +78,11 @@ export function ProjectsSection() {
           </p>
         </div>
 
+        <AnimatedElement
+          as="div"
+          animation="fadeInScale"
+          delay={0.2}
+        >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card
@@ -91,6 +96,7 @@ export function ProjectsSection() {
             />
           ))}
         </div>
+        </AnimatedElement>
 
         <div className="text-center mt-12">
           <Button variant="secondary">

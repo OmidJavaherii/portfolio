@@ -10,7 +10,7 @@ export function HeroSection() {
     <AnimatedSection 
       id="home" 
       className="pt-32 pb-16 md:pt-26 sm:pt-20 max-sm:pt-16 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
-      animation="fadeIn"
+      animation="fadeInScale"
       delay={0.1}
     >
       <div className="container mx-auto px-4">

@@ -154,7 +154,7 @@ export function Footer({
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center text-muted">
+        <div className="border-t border-border mt-12 pt-8 -mb-12 text-center text-muted">
           <p>
             &copy; {currentYear} {name}. All rights reserved.
           </p>

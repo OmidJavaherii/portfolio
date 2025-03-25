@@ -13,6 +13,7 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   rootMargin?: string;
+  once?: boolean;
 }
 
 export const AnimatedSection = memo(function AnimatedSection({
@@ -25,23 +26,28 @@ export const AnimatedSection = memo(function AnimatedSection({
   delay = 0,
   threshold = 0.1,
   rootMargin = '-50px',
+  once = false,
 }: AnimatedSectionProps) {
   const { ref, isIntersecting } = useScrollReveal({
     threshold,
     rootMargin,
-    once: true,
+    once,
   });
 
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (isIntersecting) {
       const timer = setTimeout(() => {
         setIsVisible(true);
+        setHasAnimated(true);
       }, delay * 1000);
       return () => clearTimeout(timer);
+    } else if (!once) {
+      setIsVisible(false);
     }
-  }, [isIntersecting, delay]);
+  }, [isIntersecting, delay, once]);
 
   const baseClasses = 'py-12 md:py-20 transition-all duration-700 ease-out';
   const getTransform = () => {
@@ -91,6 +97,7 @@ interface AnimatedElementProps {
   threshold?: number;
   rootMargin?: string;
   style?: React.CSSProperties;
+  once?: boolean;
 }
 
 export const AnimatedElement = memo(function AnimatedElement({
@@ -102,23 +109,28 @@ export const AnimatedElement = memo(function AnimatedElement({
   threshold = 0.1,
   rootMargin = '-10px',
   style = {},
+  once = false,
 }: AnimatedElementProps) {
   const { ref, isIntersecting } = useScrollReveal({
     threshold,
     rootMargin,
-    once: true,
+    once,
   });
 
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (isIntersecting) {
       const timer = setTimeout(() => {
         setIsVisible(true);
+        setHasAnimated(true);
       }, delay * 1000);
       return () => clearTimeout(timer);
+    } else if (!once) {
+      setIsVisible(false);
     }
-  }, [isIntersecting, delay]);
+  }, [isIntersecting, delay, once]);
 
   const baseClasses = 'transition-all duration-700 ease-out';
   const getTransform = () => {
@@ -133,8 +145,6 @@ export const AnimatedElement = memo(function AnimatedElement({
         return isVisible ? 'scale(1)' : 'scale(0.95)';
       case 'float':
         return isVisible ? 'translateY(0)' : 'translateY(10px)';
-      case 'bounce':
-        return isVisible ? 'translateY(0)' : 'translateY(20px)';
       default:
         return isVisible ? 'translateY(0)' : 'translateY(20px)';
     }

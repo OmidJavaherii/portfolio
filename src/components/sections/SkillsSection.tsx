@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { AnimatedSection } from '../ui/AnimatedSection';
+import { AnimatedSection, AnimatedElement } from '../ui/AnimatedSection';
 
 export function SkillsSection() {
   const skillCategories = [
@@ -62,6 +62,11 @@ export function SkillsSection() {
           </p>
         </div>
         
+        <AnimatedElement
+          as="div"
+          animation="fadeIn"
+          delay={0.2}
+        >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <div key={categoryIndex} className="bg-card rounded-xl p-6 shadow-sm">
@@ -85,6 +90,7 @@ export function SkillsSection() {
             </div>
           ))}
         </div>
+        </AnimatedElement>
       </div>
     </AnimatedSection>
   );
