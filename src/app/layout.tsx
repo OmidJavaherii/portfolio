@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/ui/Navbar";
-import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { InstallPWA } from "@/components/ui/InstallPWA";
+import { LayoutContent } from "@/components/layout/LayoutContent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,10 +56,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${inter.className} safe-top`}>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <ScrollToTop />
-        <InstallPWA />
+        <LayoutContent>{children}</LayoutContent>
       </body>
     </html>
   );
