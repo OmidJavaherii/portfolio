@@ -56,12 +56,11 @@ export function HeroSection() {
 
           <div className="relative">
             <div className="relative w-72 h-72 md:w-96 md:h-96 mx-auto">
-              {/* Placeholder for your photo - replace src with your actual photo path */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-secondary opacity-20 blur-2xl animate-pulse" />
               <div className="relative h-full w-full rounded-full border-2 border-accent/20 overflow-hidden">
                 <Image
-                  src="/images/profile.jpg"
-                  alt="John Doe"
+                  src="/images/profile.svg"
+                  alt="Profile Placeholder"
                   fill
                   className="object-cover"
                   priority
@@ -73,12 +72,16 @@ export function HeroSection() {
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
             
-            {/* Tech stack icons or other decorative elements can go here */}
+            {/* Tech stack icons */}
             <div className="absolute top-0 right-0 bg-card p-4 rounded-full shadow-lg">
-              <div className="w-10 h-10 rounded-full bg-accent/20" />
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <span className="text-xl">⚛️</span>
+              </div>
             </div>
             <div className="absolute bottom-0 left-0 bg-card p-4 rounded-full shadow-lg">
-              <div className="w-10 h-10 rounded-full bg-primary/20" />
+              <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                <span className="text-xl">🚀</span>
+              </div>
             </div>
           </div>
         </div>
