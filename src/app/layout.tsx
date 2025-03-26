@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { registerServiceWorker } from "@/utils/registerServiceWorker";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -78,7 +77,6 @@ export default function RootLayout({
       <body className={`${inter.className} safe-top`}>
         <ThemeProvider>
           <LayoutContent>{children}</LayoutContent>
-          <PWAInstallPrompt />
         </ThemeProvider>
       </body>
     </html>
