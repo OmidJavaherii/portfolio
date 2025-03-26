@@ -22,17 +22,19 @@ export function PWAInstallPrompt() {
       setIsInstallable(true);
     };
 
+    // Add event listener for beforeinstallprompt
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
 
     // Handle successful installation
-    window.addEventListener('appinstalled', () => {
+    const handleAppInstalled = () => {
       setDeferredPrompt(null);
       setIsInstallable(false);
-    });
+    };
+    window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
-      window.removeEventListener('appinstalled', () => {});
+      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
@@ -41,9 +43,10 @@ export function PWAInstallPrompt() {
 
     try {
       // Show the install prompt
-      deferredPrompt.prompt();
+      await deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
-      await deferredPrompt.userChoice;
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
       // Clear the deferredPrompt variable
       setDeferredPrompt(null);
       // Hide the install button
