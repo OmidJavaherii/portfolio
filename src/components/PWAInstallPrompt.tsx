@@ -3,12 +3,17 @@
 import { useEffect, useState } from 'react';
 import { Button } from './ui/Button';
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 export function PWAInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
+    const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
       // Stash the event so it can be triggered later
@@ -17,7 +22,7 @@ export function PWAInstallPrompt() {
       setIsInstallable(true);
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
 
     // Handle successful installation
     window.addEventListener('appinstalled', () => {
@@ -26,7 +31,7 @@ export function PWAInstallPrompt() {
     });
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
       window.removeEventListener('appinstalled', () => {});
     };
   }, []);
@@ -38,7 +43,7 @@ export function PWAInstallPrompt() {
       // Show the install prompt
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
-      const { outcome } = await deferredPrompt.userChoice;
+      await deferredPrompt.userChoice;
       // Clear the deferredPrompt variable
       setDeferredPrompt(null);
       // Hide the install button
