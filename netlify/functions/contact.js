@@ -17,14 +17,12 @@ exports.handler = async function(event, context) {
 
     // Create a transporter using SMTP
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
-      },
-      secure: true,
-      tls: {
-        rejectUnauthorized: false,
       },
     });
 
@@ -58,7 +56,10 @@ exports.handler = async function(event, context) {
     console.error('Error sending email:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to send email. Please try again later.' })
+      body: JSON.stringify({ 
+        error: 'Failed to send email. Please try again later.',
+        details: error.message 
+      })
     };
   }
 }; 
