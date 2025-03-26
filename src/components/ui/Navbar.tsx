@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { AnimatedSection } from './AnimatedSection';
 import { Button } from './Button';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavItem {
   label: string;
@@ -86,7 +87,7 @@ export function Navbar({
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center  space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -99,23 +100,27 @@ export function Navbar({
                 {item.label}
               </Link>
             ))}
+            <ThemeToggle />
             <Button variant="primary" size="sm">
               <a href={ctaButton.href} download rel="noopener noreferrer">{ctaButton.label}</a>
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-accent/10 z-20 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-primary" />
-            ) : (
-              <Menu className="w-6 h-6 text-primary" />
-            )}
-          </button>
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
+            <button
+              className="p-2 rounded-lg hover:bg-accent/10 z-20 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-primary" />
+              ) : (
+                <Menu className="w-6 h-6 text-primary" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -138,9 +143,9 @@ export function Navbar({
               </Link>
             ))}
             <Button variant="primary" size="sm" className="mt-4">
-            <a href={ctaButton.href} target="_blank" rel="noopener noreferrer">
-                    {ctaButton.label}
-                  </a>
+              <a href={ctaButton.href} target="_blank" rel="noopener noreferrer">
+                {ctaButton.label}
+              </a>
             </Button>
           </nav>
         </div>

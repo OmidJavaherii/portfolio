@@ -68,7 +68,7 @@ export function ExperienceSection() {
           delay={0.2}
         >
           <h2 className="text-3xl font-bold mb-4">Experience</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-lg text-gray-600 dark:text-gray-600">
             My professional journey and work experience
           </p>
         </AnimatedElement>
@@ -85,10 +85,10 @@ export function ExperienceSection() {
               <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:border-blue-400" />
               <div className="mb-4">
                 <h3 className="text-xl font-semibold">{experience.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-600">
                   {experience.company}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-gray-600">
                   {experience.period}
                 </p>
               </div>

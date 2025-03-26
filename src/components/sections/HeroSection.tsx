@@ -1,14 +1,36 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { Button } from '../ui/Button';
-import { AnimatedSection } from '../ui/AnimatedSection';
+import React from "react";
+import Image from "next/image";
+import { Button } from "../ui/Button";
+import Link from "next/link";
+import { AnimatedSection } from "../ui/AnimatedSection";
 
 export function HeroSection() {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
-    <AnimatedSection 
-      id="home" 
+    <AnimatedSection
+      id="home"
       className="pt-32 pb-16 md:pt-26 sm:pt-20 max-sm:pt-16 md:pb-24 overflow-hidden bg-gradient-to-b from-accent/5 via-background to-background"
       animation="fadeInScale"
       delay={0.1}
@@ -19,28 +41,40 @@ export function HeroSection() {
             <p className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-accent/10 text-accent">
               Welcome to my portfolio
             </p>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Hi, I&apos;m <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Omid Javaheri</span>
+              Hi, I&apos;m{" "}
+              <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+                Omid Javaheri
+              </span>
             </h1>
-            
+
             <p className="text-muted text-lg mb-8 max-w-2xl">
-              I&apos;m a passionate frontend developer with expertise in building modern web applications.
+              I&apos;m a passionate frontend developer with expertise in
+              building modern web applications.
             </p>
-            
+
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <Button size="lg" variant="primary">
-                <a href="#projects">
-                View My Projects
-                </a>
-              </Button>
-              <Button size="lg" variant="outline">
-                <a href="#contact">
-                Contact Me
-                </a>
-              </Button>
+              <Link
+                href={"#projects"}
+                onClick={(e) => handleScroll(e, "#projects")}
+                className="cursor-pointer"
+              >
+                <Button size="lg" variant="primary" className="cursor-pointer">
+                  View My Projects
+                </Button>
+              </Link>
+              <Link
+                href={"#contact"}
+                onClick={(e) => handleScroll(e, "#contact")}
+                className="cursor-pointer"
+              >
+                <Button size="lg" variant="outline" className="cursor-pointer">
+                  Contact Me
+                </Button>
+              </Link>
             </div>
-            
+
             <div className="mt-12 flex flex-wrap gap-8 justify-center lg:justify-start text-center lg:text-left">
               <div>
                 <div className="font-bold text-3xl text-primary">90%</div>
@@ -77,13 +111,13 @@ export function HeroSection() {
                 /> */}
               </div>
             </div>
-            
+
             {/* Decorative elements */}
             <div className="absolute -top-5 -right-3 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
             <div className="absolute top-8 left-11 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
             <div className="absolute bottom-5 right-7 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
             <div className="absolute -bottom-7 -left-7 w-32 h-32 bg-secondary/10 rounded-full blur-xl" />
-            
+
             {/* Tech stack icons */}
             <div className="absolute top-0 right-0 bg-card p-4 rounded-full shadow-lg">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
@@ -110,4 +144,4 @@ export function HeroSection() {
       </div>
     </AnimatedSection>
   );
-} 
+}

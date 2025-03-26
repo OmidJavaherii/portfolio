@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LayoutContent } from "@/components/layout/LayoutContent";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,28 +15,34 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Omid Javaheri - Frontend Developer",
-  description: "Personal portfolio website of Omid Javaheri - Frontend Developer",
-  manifest: "/manifest.json",
+  title: "Omid Javaheri - Portfolio",
+  description: "Personal portfolio website showcasing my projects, skills, and experience.",
+  keywords: ["portfolio", "developer", "web development", "software engineer"],
+  authors: [{ name: "Omid Javaheri" }],
+  creator: "Omid Javaheri",
+  publisher: "Omid Javaheri",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://omidjavaheri.com",
+    siteName: "Omid Javaheri Portfolio",
+    title: "Omid Javaheri - Portfolio",
+    description: "Personal portfolio website showcasing my projects, skills, and experience.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Omid Javaheri Portfolio",
+      },
+    ],
+  },
   icons: {
-    icon: [
-      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    shortcut: "/icons/icon-192x192.png",
-    apple: [
-      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
+    icon: "/icons/icon-192x192.png",
+    apple: "/icons/icon-192x192.png",
   },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Omid Javaheri Portfolio",
-  },
-  formatDetection: {
-    telephone: false,
-  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -62,7 +69,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${inter.className} safe-top`}>
-        <LayoutContent>{children}</LayoutContent>
+        <ThemeProvider>
+          <LayoutContent>{children}</LayoutContent>
+        </ThemeProvider>
       </body>
     </html>
   );
