@@ -15,6 +15,18 @@ exports.handler = async function(event, context) {
       };
     }
 
+    // Verify environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Missing email configuration');
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ 
+          error: 'Server configuration error',
+          details: 'Missing email configuration'
+        })
+      };
+    }
+
     // Create a transporter using SMTP
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -24,7 +36,24 @@ exports.handler = async function(event, context) {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
+
+    // Verify SMTP connection
+    try {
+      await transporter.verify();
+    } catch (error) {
+      console.error('SMTP verification failed:', error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ 
+          error: 'Email service configuration error',
+          details: error.message
+        })
+      };
+    }
 
     // Email content
     const mailOptions = {

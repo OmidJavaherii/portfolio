@@ -19,22 +19,33 @@ export function PWAInstallPrompt() {
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
+    // Handle successful installation
+    window.addEventListener('appinstalled', () => {
+      setDeferredPrompt(null);
+      setIsInstallable(false);
+    });
+
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', () => {});
     };
   }, []);
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
 
-    // Show the install prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    // Clear the deferredPrompt variable
-    setDeferredPrompt(null);
-    // Hide the install button
-    setIsInstallable(false);
+    try {
+      // Show the install prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      // Clear the deferredPrompt variable
+      setDeferredPrompt(null);
+      // Hide the install button
+      setIsInstallable(false);
+    } catch (error) {
+      console.error('Error installing PWA:', error);
+    }
   };
 
   if (!isInstallable) return null;
