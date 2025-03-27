@@ -116,9 +116,9 @@ export function Navbar({
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-blue-300" />
+                <X className="w-6 h-6 text-primary" />
               ) : (
-                <Menu className="w-6 h-6 text-blue-300" />
+                <Menu className="w-6 h-6 text-primary" />
               )}
             </button>
           </div>
