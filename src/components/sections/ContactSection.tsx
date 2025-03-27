@@ -1,53 +1,57 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Button } from '../ui/Button';
-import { AnimatedSection } from '../ui/AnimatedSection';
-import { AnimatedElement } from '../ui/AnimatedSection';
+import React, { useState } from "react";
+import { Button } from "../ui/Button";
+import { AnimatedSection } from "../ui/AnimatedSection";
+import { AnimatedElement } from "../ui/AnimatedSection";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
+    setStatus("loading");
+    setErrorMessage("");
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
-        method: 'POST',
+      const response = await fetch("/.netlify/functions/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
 
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch {
-      setStatus('error');
-      setErrorMessage('Failed to send message. Please try again.');
+      setStatus("error");
+      setErrorMessage("Failed to send message. Please try again.");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <AnimatedSection 
-      id="contact" 
+    <AnimatedSection
+      id="contact"
       className="py-20 bg-gradient-to-b from-background via-accent/5 to-background"
       animation="fadeIn"
       delay={0.1}
@@ -59,14 +63,18 @@ export function ContactSection() {
               Get in Touch
             </h2>
             <p className="text-muted text-center mb-12">
-              Have a question or want to work together? I&apos;d love to hear from you!
+              Have a question or want to work together? I&apos;d love to hear
+              from you!
             </p>
           </AnimatedElement>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <AnimatedElement animation="slideUp" delay={0.3}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Name
                 </label>
                 <input
@@ -76,7 +84,7 @@ export function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder-gray-400"
                   placeholder="Your name"
                 />
               </div>
@@ -84,7 +92,10 @@ export function ContactSection() {
 
             <AnimatedElement animation="slideUp" delay={0.4}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -94,7 +105,7 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder-gray-400"
                   placeholder="your@email.com"
                 />
               </div>
@@ -102,7 +113,10 @@ export function ContactSection() {
 
             <AnimatedElement animation="slideUp" delay={0.5}>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -112,7 +126,7 @@ export function ContactSection() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-2 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder-gray-400"
                   placeholder="Your message..."
                 />
               </div>
@@ -120,33 +134,31 @@ export function ContactSection() {
 
             <AnimatedElement animation="slideUp" delay={0.6}>
               <div className="flex flex-col items-center gap-4">
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   variant="primary"
-                  disabled={status === 'loading'}
+                  disabled={status === "loading"}
                   className="w-full md:w-auto"
                 >
-                  {status === 'loading' ? (
+                  {status === "loading" ? (
                     <span className="flex items-center gap-2">
                       <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       Sending...
                     </span>
                   ) : (
-                    'Send Message'
+                    "Send Message"
                   )}
                 </Button>
 
-                {status === 'success' && (
+                {status === "success" && (
                   <p className="text-green-500 text-sm">
                     Message sent successfully! I&apos;ll get back to you soon.
                   </p>
                 )}
 
-                {status === 'error' && (
-                  <p className="text-red-500 text-sm">
-                    {errorMessage}
-                  </p>
+                {status === "error" && (
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
               </div>
             </AnimatedElement>
@@ -155,4 +167,4 @@ export function ContactSection() {
       </div>
     </AnimatedSection>
   );
-} 
+}

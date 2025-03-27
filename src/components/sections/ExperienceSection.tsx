@@ -103,7 +103,7 @@ export function ExperienceSection() {
                 {experience.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                    className="px-3 py-1 text-sm rounded-full bg-accent/12 text-muted/100"
                   >
                     {tech}
                   </span>

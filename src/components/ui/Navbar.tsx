@@ -74,7 +74,7 @@ export function Navbar({
 
   return (
     <AnimatedSection
-      className={`fixed pt-2.5 h-10 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed pt-2.5 h-10 max-sm:mt-1 max-sm:pb-12 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-background/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       animation="fadeIn"
@@ -87,7 +87,8 @@ export function Navbar({
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center
+          md:space-x-3 lg:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -125,7 +126,7 @@ export function Navbar({
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden fixed left-0 w-full min-h-screen top-0 pt-6 z-10 transition-all bg-background/95 duration-300 ease-in-out ${
+          className={`md:hidden fixed left-0 w-full min-h-screen top-0 pt-6 z-10 transition-all bg-background/95 dark:bg-background/98 backdrop-blur-md duration-300 ease-in-out ${
             isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           }`}
         >
