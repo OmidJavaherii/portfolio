@@ -74,7 +74,7 @@ export function Navbar({
 
   return (
     <AnimatedSection
-      className={`fixed pt-2.5 h-10 max-sm:mt-1 max-sm:pb-12 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed pt-2.5 h-10 max-sm:pt-3 max-sm:pb-12 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-background/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       animation="fadeIn"
