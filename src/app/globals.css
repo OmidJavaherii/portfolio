@@ -299,16 +299,92 @@ body {
   transform: translateY(0);
 }
 
-/* Glass effect */
+/* Aurora Background */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(45deg, #0f172a, #1e293b);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show aurora in dark mode */
+.dark .aurora-bg {
+  opacity: 1;
+}
+
+.aurora-bg::before,
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  animation: aurora 20s linear infinite;
+}
+
+.aurora-bg::before {
+  background: radial-gradient(circle at center, 
+    rgba(56, 189, 248, 0.15) 0%,
+    rgba(139, 92, 246, 0.15) 25%,
+    rgba(155, 46, 102, 0.15) 50%,
+    transparent 100%
+  );
+  animation-delay: -10s;
+}
+
+.aurora-bg::after {
+  background: radial-gradient(circle at center,
+    rgba(139, 92, 246, 0.15) 0%,
+    rgba(155, 46, 102, 0.15) 25%,
+    rgba(56, 189, 248, 0.15) 50%,
+    transparent 100%
+  );
+}
+
+@keyframes aurora {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 .dark .glass {
-  background: rgba(26, 29, 35, 0.7);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateY(-2px);
+}
+
+.dark .glass-hover:hover {
+  background: rgba(15, 23, 42, 0.8);
 }
 
 /* Custom Scrollbar Styles */

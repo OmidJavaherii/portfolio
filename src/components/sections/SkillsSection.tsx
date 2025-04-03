@@ -69,7 +69,7 @@ export function SkillsSection() {
         >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-card rounded-xl p-6 shadow-sm">
+            <div key={categoryIndex} className="bg-card rounded-xl p-6 shadow-sm glass glass-hover">
               <h3 className="text-xl font-bold mb-4 pb-2 border-b">{category.name}</h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (

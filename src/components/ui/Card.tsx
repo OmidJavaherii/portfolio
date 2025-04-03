@@ -28,7 +28,7 @@ export function Card({
 
   return (
     <div 
-      className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500"
+      className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500 glass"
     >
       <div className="aspect-video relative">
         {imageSrc && (

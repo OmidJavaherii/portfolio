@@ -68,7 +68,7 @@ export function ExperienceSection() {
           delay={0.2}
         >
           <h2 className="text-3xl font-bold mb-4">Experience</h2>
-          <p className="text-lg text-muted">
+          <p className="text-lg text-current/50">
             My professional journey and work experience
           </p>
         </AnimatedElement>
@@ -88,13 +88,13 @@ export function ExperienceSection() {
                 <p className="">
                   {experience.company}
                 </p>
-                <p className="text-sm text-muted">
+                <p className="text-sm text-current/50">
                   {experience.period}
                 </p>
               </div>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 {experience.description.map((item, i) => (
-                  <li key={i} className="text-muted">
+                  <li key={i} className="text-current/50">
                     {item}
                   </li>
                 ))}
