@@ -26,7 +26,7 @@ export const AnimatedSection = memo(function AnimatedSection({
   delay = 0,
   threshold = 0.1,
   rootMargin = '-50px',
-  once = false,
+  once = true,
 }: AnimatedSectionProps) {
   const { ref, isIntersecting } = useScrollReveal({
     threshold,

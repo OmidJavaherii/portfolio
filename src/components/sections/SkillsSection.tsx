@@ -8,21 +8,21 @@ export function SkillsSection() {
     {
       name: "Frontend Development",
       skills: [
-        { name: "JavaScript", level: 85 },
-        { name: "TypeScript", level: 70 },
-        { name: "React", level: 80 },
-        { name: "Next.js", level: 75 },
-        { name: "Zustand", level: 60 },
+        { name: "JavaScript", level: "Expert" },
+        { name: "TypeScript", level: "Advanced" },
+        { name: "React", level: "Expert" },
+        { name: "Next.js", level: "Advanced" },
+        { name: "Zustand", level: "Intermediate" },
       ]
     },
     {
       name: "CSS Frameworks",
       skills: [
-        { name: "HTML/CSS", level: 90 },
-        { name: "Responsive Design", level: 90 },
-        { name: "Tailwind CSS", level: 85 },
-        { name: "Material UI", level: 80 },
-        { name: "Bootstrap", level: 85 },
+        { name: "HTML/CSS", level: "Expert" },
+        { name: "Responsive Design", level: "Expert" },
+        { name: "Tailwind CSS", level: "Advanced" },
+        { name: "Material UI", level: "Advanced" },
+        { name: "Bootstrap", level: "Advanced" },
       ]
     },
     // {
@@ -38,14 +38,29 @@ export function SkillsSection() {
     {
       name: "Other Skills",
       skills: [
-        { name: "Git/GitHub", level: 85 },
-        { name: "UI/UX Design", level: 65 },
-        { name: "Rest API", level: 80 },
-        { name: "SEO", level: 40 },
-        { name: "Testing", level: 10 },
+        { name: "Git/GitHub", level: "Advanced" },
+        { name: "UI/UX Design", level: "Intermediate" },
+        { name: "Rest API", level: "Advanced" },
+        { name: "SEO", level: "Beginner" },
+        { name: "Testing", level: "Beginner" },
       ]
     }
   ];
+
+  const getLevelColor = (level: string) => {
+    switch (level.toLowerCase()) {
+      case 'expert':
+        return 'bg-primary';
+      case 'advanced':
+        return 'bg-accent';
+      case 'intermediate':
+        return 'bg-secondary';
+      case 'beginner':
+        return 'bg-muted';
+      default:
+        return 'bg-muted';
+    }
+  };
 
   return (
     <AnimatedSection 
@@ -74,14 +89,20 @@ export function SkillsSection() {
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
-                    <div className="flex justify-between mb-1">
+                    <div className="flex justify-between items-center mb-2">
                       <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted">{skill.level}%</span>
+                      <span className={`text-xs px-2 py-1 rounded-full ${getLevelColor(skill.level)}/10 text-${getLevelColor(skill.level).split('-')[1]}`}>
+                        {skill.level}
+                      </span>
                     </div>
-                    <div className="w-full bg-accent/10 rounded-full h-2.5">
+                    <div className="w-full bg-accent/10 rounded-full h-2">
                       <div 
-                        className="bg-primary h-2.5 rounded-full" 
-                        style={{ width: `${skill.level}%` }}
+                        className={`h-2 rounded-full ${getLevelColor(skill.level)}`}
+                        style={{ 
+                          width: skill.level === 'Expert' ? '100%' : 
+                                 skill.level === 'Advanced' ? '80%' : 
+                                 skill.level === 'Intermediate' ? '60%' : '40%' 
+                        }}
                       ></div>
                     </div>
                   </div>
