@@ -31,7 +31,7 @@ export function ProjectsSection() {
         "Tailwind CSS",
       ],
       link: "https://github.com/OmidJavaherii/restaurant-menu/",
-      preview: "https://restaurant-menu-rose-eight.vercel.app/",
+      preview: "https://restaurant-menu-one-chi.vercel.app",
     },
     {
       title: "Portfolio Website",
