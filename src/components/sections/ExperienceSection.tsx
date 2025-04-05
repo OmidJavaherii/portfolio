@@ -45,7 +45,7 @@ const experiences: Experience[] = [
     description: [
       "Managed 20+ projects (10+ units each), ensuring timely delivery and team coordination",
       "Led R&D for 10+ units, optimizing functionality and solving technical challenges",
-      "Consulted 40+ clients, achieving 85%+ satisfaction by delivering tailored smart solutions",
+      "Consulted 40+ clients, achieving 95%+ satisfaction by delivering tailored smart solutions",
       "Quickly adapted to new electronics technologies, showcasing rapid learning and problem-solving skills",
     ],
     technologies: ["C", "Java", "Project Management", "Team Management", "Customer Service", "Problem Solving", "Time Management",],

@@ -27,7 +27,7 @@ export function AboutSection() {
             <p className="mb-4">
               I’m a Front-End Developer with over 2 years of experience,
               blending a background in project management from 20+ smart
-              building projects and 85%+ customer satisfaction. Skilled in
+              building projects and 25+ happy clients. Skilled in
               React, TypeScript, and Next.js. I thrive on crafting
               high-performance, user-focused experiences. My knack for quickly mastering new
               technologies drives me to deliver impactful digital
