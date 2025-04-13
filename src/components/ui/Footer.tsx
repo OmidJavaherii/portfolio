@@ -145,7 +145,7 @@ export function Footer({
             <ul className="space-y-2 text-muted">
               <li>Tehran, Iran</li>
               <li>
-                <a href="mailto:omid138089@gmail.com">omid138089@gmail.com</a>
+                <a href="mailto:omidjavaheri.eng@gmail.com">omidjavaheri.eng@gmail.com</a>
               </li>
               <li>
                 <a href="tel:+989138100702">+98 913 810 0702</a>

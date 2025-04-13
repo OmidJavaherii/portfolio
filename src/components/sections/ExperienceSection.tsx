@@ -14,7 +14,7 @@ interface Experience {
 const experiences: Experience[] = [
   {
     title: "Front-End Developer",
-    company: "Self-Taught & Training (Tehran, Iran)",
+    company: "Freelancer (Tehran, Iran)",
     period: "2023 - Present",
     description: [
       "I have been learning and practicing Front-End Development for nearly two years",
@@ -36,6 +36,7 @@ const experiences: Experience[] = [
       "Git",
       "GitHub",
       "Vercel",
+      "Netlify",
     ],
   },
   {
