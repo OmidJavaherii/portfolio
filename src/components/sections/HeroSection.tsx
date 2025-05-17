@@ -85,7 +85,7 @@ export function HeroSection() {
                 <div className="text-muted">Projects Completed</div>
               </div>
               <div>
-                <div className="font-bold text-3xl text-primary">2+</div>
+                <div className="font-bold text-3xl text-primary">6+</div>
                 <div className="text-muted">Years Experience</div>
               </div>
             </div>

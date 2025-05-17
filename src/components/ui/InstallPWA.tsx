@@ -78,6 +78,7 @@ export function InstallPWA() {
         <button
           onClick={() => setIsVisible(false)}
           className="text-muted hover:text-foreground transition-colors"
+          area-label="close"
         >
           <X className="w-5 h-5" />
         </button>

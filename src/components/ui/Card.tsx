@@ -22,22 +22,21 @@ export function Card({
 }: CardProps): React.ReactElement {
   const handlePreviewClick = () => {
     if (preview) {
-      window.open(preview, '_blank', 'noopener,noreferrer');
+      window.open(preview, "_blank", "noopener,noreferrer");
     }
   };
 
   return (
-    <div 
-      className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500 glass"
-    >
+    <div className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover-lift duration-500 glass">
       <div className="aspect-video relative">
         {imageSrc && (
           <div
+            area-label="project"
             onClick={handlePreviewClick}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 handlePreviewClick();
               }
             }}
@@ -69,7 +68,11 @@ export function Card({
                 className="w-full"
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" size="sm" className="w-full h-10 cursor-pointer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full h-10 cursor-pointer"
+                >
                   View Project
                 </Button>
               </a>
@@ -81,7 +84,11 @@ export function Card({
                 className="w-full"
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" size="sm" className="w-full h-10 cursor-pointer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full h-10 cursor-pointer"
+                >
                   Preview
                 </Button>
               </a>

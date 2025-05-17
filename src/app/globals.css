@@ -327,7 +327,7 @@ body {
   top: -100%;
   left: -100%;
   background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
-  animation: aurora 20s linear infinite;
+  /* animation: aurora 20s linear infinite; */
 }
 
 .aurora-bg::before {

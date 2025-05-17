@@ -14,8 +14,35 @@ interface Experience {
 const experiences: Experience[] = [
   {
     title: "Front-End Developer",
+    company: "Desna (Tehran, Iran)",
+    period: "Apr 2025 - Present",
+    description: [
+      "Developed and delivered 3 key projects, including a B2B clothing e-commerce platform, a corporate web application, and two interactive dashboard applications, using Next.js, React, TypeScript, and JavaScript",
+      "Implemented responsive and high-performance user interfaces with a focus on seamless user experience and scalability",
+      "Utilized Redux for state management, React Hook Form with Yup for form validation, and Tailwind CSS/MUI for modern, efficient styling",
+      "Collaborated on-site with cross-functional teams to ensure project alignment with business goals and technical requirements",
+      "Actively adopted and integrated new front-end technologies to enhance project quality and stay aligned with industry trends",
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Redux",
+      "React Hook Form",
+      "Yup",
+      "Tailwind CSS",
+      "Bootstrap",
+      "MUI",
+      "Git",
+      "Gitlab",
+      "GitHub",
+    ],
+  },
+  {
+    title: "Front-End Developer",
     company: "Freelancer (Tehran, Iran)",
-    period: "2023 - Present",
+    period: "Feb 2023 -Apr 2025",
     description: [
       "I have been learning and practicing Front-End Development for nearly two years",
       "I have completed 10+ projects using Next.js, React, TypeScript, and JavaScript",
@@ -42,14 +69,23 @@ const experiences: Experience[] = [
   {
     title: "Technical Project Management",
     company: "iSEE Smart Home (Isfahan-Tehran, Iran) ",
-    period: "2019 - 2025",
+    period: "Apr 2019 -Mar 2025",
     description: [
       "Managed 20+ projects (10+ units each), ensuring timely delivery and team coordination",
       "Led R&D for 10+ units, optimizing functionality and solving technical challenges",
       "Consulted 40+ clients, achieving 95%+ satisfaction by delivering tailored smart solutions",
       "Quickly adapted to new electronics technologies, showcasing rapid learning and problem-solving skills",
     ],
-    technologies: ["C", "Java", "Project Management", "Team Management", "Customer Service", "Problem Solving", "Time Management",],
+    technologies: [
+      "Product Management",
+      "C",
+      "Java",
+      "Project Management",
+      "Team Management",
+      "Customer Service",
+      "Problem Solving",
+      "Time Management",
+    ],
   },
 ];
 
@@ -86,12 +122,8 @@ export function ExperienceSection() {
               <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-accent" />
               <div className="mb-4">
                 <h3 className="text-xl font-semibold">{experience.title}</h3>
-                <p className="">
-                  {experience.company}
-                </p>
-                <p className="text-sm text-current/50">
-                  {experience.period}
-                </p>
+                <p className="">{experience.company}</p>
+                <p className="text-sm text-current/50">{experience.period}</p>
               </div>
               <ul className="list-disc list-inside mb-4 space-y-2">
                 {experience.description.map((item, i) => (

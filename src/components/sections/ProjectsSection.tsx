@@ -8,6 +8,14 @@ import { AnimatedElement, AnimatedSection } from "../ui/AnimatedSection";
 export function ProjectsSection() {
   const projects = [
     {
+      title: "E-commerce Shop: Royal Jeans",
+      description: "Responsive creative web for happy new year supporting two languages.",
+      imageSrc: "/images/project6.png",
+      tags: ["Next.js", "JavaScript", "Tailwind CSS", "Vite"],
+      link: "https://royaljeans.ir/",
+      preview: "https://royaljeans.ir/",
+    },
+    {
       title: "Happy New year",
       description: "Responsive creative web for happy new year supporting two languages.",
       imageSrc: "/images/project1.png",
