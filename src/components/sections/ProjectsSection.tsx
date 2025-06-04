@@ -8,20 +8,53 @@ import { AnimatedElement, AnimatedSection } from "../ui/AnimatedSection";
 export function ProjectsSection() {
   const projects = [
     {
+      title: "Frontend Interview Questions",
+      description:
+        "A full package that contains a list of questions that are asked in frontend interviews.",
+      imageSrc: "/images/project5.png",
+      tags: [
+        ".md files",
+        "Github Pages",
+        "Markdown",
+        "Frontend",
+        "Cheatsheet",
+        
+      ],
+      link: "https://github.com/OmidJavaherii/frontend-interview-questions/",
+      preview: "https://omidjavaherii.github.io/frontend-interview-questions/",
+    },
+    {
       title: "E-commerce Shop: Royal Jeans",
-      description: "Responsive creative web for happy new year supporting two languages.",
+      description:
+        "A fully responsive e-commerce platform for a clothing factory has a payment gateway for the users to pay for their orders.",
       imageSrc: "/images/project6.png",
-      tags: ["Next.js", "JavaScript", "Tailwind CSS", "Vite"],
-      link: "https://royaljeans.ir/",
+      tags: [
+        "Next.js",
+        "JavaScript",
+        "Bootstrap",
+        "Sweat alert",
+        "Redux",
+        "mapbox-gl",
+        "swiper",
+      ],
+      // link: "https://royaljeans.ir/",
       preview: "https://royaljeans.ir/",
     },
     {
-      title: "Happy New year",
-      description: "Responsive creative web for happy new year supporting two languages.",
-      imageSrc: "/images/project1.png",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vite"],
-      link: "https://github.com/OmidJavaherii/my-404-page/",
-      preview: "https://my-404-page-phi.vercel.app/",
+      title: "Restaurant Website: Ghajari Food",
+      description:
+        "A traditional restaurant website with a dashboard for the admin to manage the orders and the products and users.",
+      imageSrc: "/images/project3.png",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Toastify",
+        "Zustand",
+      ],
+      // link: "https://github.com/OmidJavaherii/portfolio/",
+      preview: "https://ghajarifood.com/",
     },
     {
       title: "Restaurant Menu Website",
@@ -41,15 +74,25 @@ export function ProjectsSection() {
       link: "https://github.com/OmidJavaherii/restaurant-menu/",
       preview: "https://restaurant-menu-one-chi.vercel.app",
     },
+
     {
-      title: "Portfolio Website",
+      title: "Happy New year",
       description:
-        "A modern and responsive portfolio website showcasing projects and skills.",
-      imageSrc: "/images/project3.png",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      link: "https://github.com/OmidJavaherii/portfolio/",
-      preview: "https://portfolio-umber-gamma-29.vercel.app/",
+        "Responsive creative web for happy new year supporting two languages.",
+      imageSrc: "/images/project1.png",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vite"],
+      link: "https://github.com/OmidJavaherii/my-404-page/",
+      preview: "https://my-404-page-phi.vercel.app/",
     },
+    // {
+    //   title: "Portfolio Website",
+    //   description:
+    //     "A modern and responsive portfolio website showcasing projects and skills.",
+    //   imageSrc: "/images/project33.png",
+    //   tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    //   link: "https://github.com/OmidJavaherii/portfolio/",
+    //   preview: "https://portfolio-umber-gamma-29.vercel.app/",
+    // },
     {
       title: "Game APP",
       description:
@@ -59,15 +102,15 @@ export function ProjectsSection() {
       link: "https://github.com/OmidJavaherii/tic-tac-toe/",
       preview: "https://tic-tac-toe-ten-tau-23.vercel.app/",
     },
-    {
-      title: "Dashboard App",
-      description:
-        "An admin dashboard with data visualization, user management, and analytics.",
-      imageSrc: "/images/project5.png",
-      tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
-      link: "https://github.com/OmidJavaherii/dashboard-react/",
-      preview: "https://omidjavaherii-dashboard-admin.liara.run/",
-    },
+    // {
+    //   title: "Dashboard App",
+    //   description:
+    //     "An admin dashboard with data visualization, user management, and analytics.",
+    //   imageSrc: "/images/project55.png",
+    //   tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
+    //   link: "https://github.com/OmidJavaherii/dashboard-react/",
+    //   preview: "https://omidjavaherii-dashboard-admin.liara.run/",
+    // },
   ];
 
   return (
@@ -86,24 +129,20 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <AnimatedElement
-          as="div"
-          animation="fadeInScale"
-          delay={0.2}
-        >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              title={project.title}
-              description={project.description}
-              imageSrc={project.imageSrc}
-              tags={project.tags}
-              link={project.link}
-              preview={project.preview}
-            />
-          ))}
-        </div>
+        <AnimatedElement as="div" animation="fadeInScale" delay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <Card
+                key={index}
+                title={project.title}
+                description={project.description}
+                imageSrc={project.imageSrc}
+                tags={project.tags}
+                link={project.link}
+                preview={project.preview}
+              />
+            ))}
+          </div>
         </AnimatedElement>
 
         <div className="text-center mt-12">

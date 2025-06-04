@@ -16,7 +16,7 @@ exports.handler = async function(event, context) {
     }
 
     // Verify environment variables
-    if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error('Missing email configuration');
       return {
         statusCode: 500,
@@ -27,17 +27,17 @@ exports.handler = async function(event, context) {
       };
     }
 
-    // Create a transporter using SMTP with configurable settings
+    // Create a transporter using SMTP
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === 'true',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports like 587
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
       tls: {
-        rejectUnauthorized: process.env.SMTP_REJECT_UNAUTHORIZED === 'true'
+        rejectUnauthorized: false
       }
     });
 

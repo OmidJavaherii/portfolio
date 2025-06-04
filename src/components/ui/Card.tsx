@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "./Button";
 
 interface CardProps {
@@ -20,6 +21,7 @@ export function Card({
   preview,
   tags = [],
 }: CardProps): React.ReactElement {
+  const [isLoading, setIsLoading] = useState(true);
   const handlePreviewClick = () => {
     if (preview) {
       window.open(preview, "_blank", "noopener,noreferrer");
@@ -40,10 +42,26 @@ export function Card({
                 handlePreviewClick();
               }
             }}
-            className="h-full bg-cover bg-center m-6 mt-8 rounded-lg cursor-pointer"
-            style={{ backgroundImage: `url(${imageSrc})` }}
-          />
+            className="relative h-full m-6 mt-8 rounded-lg cursor-pointer overflow-hidden"
+          >
+            {isLoading && (
+              <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+            )}
+            <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className={`object-cover transition-transform duration-300 hover:scale-105 ${
+                isLoading ? 'opacity-0' : 'opacity-100'
+              }`}
+              loading="lazy"
+              quality={85}
+              onLoadingComplete={() => setIsLoading(false)}
+            />
+          </div>
         )}
+        
         <div className="p-6">
           <h3 className="text-xl font-bold mb-2">{title}</h3>
           {description && <p className="text-muted mb-4">{description}</p>}

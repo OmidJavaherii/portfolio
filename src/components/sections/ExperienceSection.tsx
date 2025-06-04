@@ -101,7 +101,7 @@ export function ExperienceSection() {
         <AnimatedElement
           as="div"
           className="text-center mb-16"
-          animation="fadeIn"
+          animation="slideUp"
           delay={0.2}
         >
           <h2 className="text-3xl font-bold mb-4">Experience</h2>
@@ -115,8 +115,8 @@ export function ExperienceSection() {
             <AnimatedElement
               key={index}
               as="div"
-              className="relative pl-8 border-l-2 border-accent"
-              animation="slideLeft"
+              className="relative pl-8 border-l-2 border-accent mb-0 py-8"
+              animation="slideUp"
               delay={0.3 + index * 0.1}
             >
               <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-accent" />
