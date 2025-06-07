@@ -22,7 +22,7 @@ export function ContactSection() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/.netlify/functions/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,15 +30,17 @@ export function ContactSection() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(data.error || "Failed to send message");
       }
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-    } catch {
+    } catch (error) {
       setStatus("error");
-      setErrorMessage("Failed to send message. Please try again.");
+      setErrorMessage(error instanceof Error ? error.message : "Failed to send message. Please try again.");
     }
   };
 
