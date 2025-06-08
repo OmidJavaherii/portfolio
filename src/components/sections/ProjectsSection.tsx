@@ -11,7 +11,7 @@ export function ProjectsSection() {
       title: "Frontend Interview Questions",
       description:
         "A full package that contains a list of questions that are asked in frontend interviews.",
-      imageSrc: "/images/project5.png",
+      imageSrc: "/images/project5.jpg",
       tags: [
         ".md files",
         "Github Pages",
@@ -27,7 +27,7 @@ export function ProjectsSection() {
       title: "E-commerce Shop: Royal Jeans",
       description:
         "A fully responsive e-commerce platform for a clothing factory has a payment gateway for the users to pay for their orders.",
-      imageSrc: "/images/project6.png",
+      imageSrc: "/images/project6.jpg",
       tags: [
         "Next.js",
         "JavaScript",
@@ -44,7 +44,7 @@ export function ProjectsSection() {
       title: "Restaurant Website: Ghajari Food",
       description:
         "A traditional restaurant website with a dashboard for the admin to manage the orders and the products and users.",
-      imageSrc: "/images/project3.png",
+      imageSrc: "/images/project3.jpg",
       tags: [
         "Next.js",
         "TypeScript",
@@ -60,7 +60,7 @@ export function ProjectsSection() {
       title: "Restaurant Menu Website",
       description:
         "A fully responsive e-commerce platform with cart, checkout, and payment integration.",
-      imageSrc: "/images/project2.png",
+      imageSrc: "/images/project2.jpg",
       tags: [
         "Next.js",
         "TypeScript",
@@ -79,7 +79,7 @@ export function ProjectsSection() {
       title: "Happy New year",
       description:
         "Responsive creative web for happy new year supporting two languages.",
-      imageSrc: "/images/project1.png",
+      imageSrc: "/images/project1.jpg",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vite"],
       link: "https://github.com/OmidJavaherii/my-404-page/",
       preview: "https://my-404-page-phi.vercel.app/",
@@ -88,7 +88,7 @@ export function ProjectsSection() {
     //   title: "Portfolio Website",
     //   description:
     //     "A modern and responsive portfolio website showcasing projects and skills.",
-    //   imageSrc: "/images/project33.png",
+    //   imageSrc: "/images/project33.jpg",
     //   tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     //   link: "https://github.com/OmidJavaherii/portfolio/",
     //   preview: "https://portfolio-umber-gamma-29.vercel.app/",
@@ -97,7 +97,7 @@ export function ProjectsSection() {
       title: "Game APP",
       description:
         "Developed an interactive Tic-Tac-Toe game with a smooth and responsive UI.",
-      imageSrc: "/images/project4.png",
+      imageSrc: "/images/project4.jpg",
       tags: ["React", "TypeScript", "Context API", "PWA"],
       link: "https://github.com/OmidJavaherii/tic-tac-toe/",
       preview: "https://tic-tac-toe-ten-tau-23.vercel.app/",
@@ -106,7 +106,7 @@ export function ProjectsSection() {
     //   title: "Dashboard App",
     //   description:
     //     "An admin dashboard with data visualization, user management, and analytics.",
-    //   imageSrc: "/images/project55.png",
+    //   imageSrc: "/images/project55.jpg",
     //   tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
     //   link: "https://github.com/OmidJavaherii/dashboard-react/",
     //   preview: "https://omidjavaherii-dashboard-admin.liara.run/",
