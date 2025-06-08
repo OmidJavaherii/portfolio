@@ -5,10 +5,10 @@ A modern, responsive portfolio website built with Next.js 14, featuring smooth a
 ## 🌟 Features
 
 - **Modern Tech Stack**
-  - Next.js 14 with App Router
+  - Next.js 15 with App Router
   - TypeScript for type safety
   - Tailwind CSS for styling
-  - React Icons for beautiful icons
+  - Lucide React for beautiful icons
 
 - **Responsive Design**
   - Desktop-first approach
