@@ -10,44 +10,64 @@ type ResponseData = {
     hasEmailPass?: boolean;
     errorName?: string;
     errorStack?: string;
+    platform?: string;
   };
 };
 
+// Unified handler that works for both Next.js and Netlify
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  req: NextApiRequest | any,
+  res: NextApiResponse<ResponseData> | any
 ) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  // Detect platform
+  const isNetlify = process.env.NETLIFY === 'true';
+  const isNextJs = !isNetlify;
+  
+  // Handle Netlify's event-based format
+  if (isNetlify) {
+    if (req.httpMethod !== 'POST') {
+      return {
+        statusCode: 405,
+        body: JSON.stringify({ error: 'Method Not Allowed' })
+      };
+    }
+    req.body = JSON.parse(req.body);
+  } else {
+    // Handle Next.js format
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method Not Allowed' });
+    }
   }
 
   try {
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      const error = { error: 'Missing required fields' };
+      return isNetlify 
+        ? { statusCode: 400, body: JSON.stringify(error) }
+        : res.status(400).json(error);
     }
 
     // Verify environment variables
     console.log('Checking environment variables...');
+    console.log('Platform:', isNetlify ? 'Netlify' : 'Next.js');
     console.log('EMAIL_USER exists:', !!process.env.EMAIL_USER);
     console.log('EMAIL_PASS exists:', !!process.env.EMAIL_PASS);
     
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('Missing email configuration:', {
-        hasEmailUser: !!process.env.EMAIL_USER,
-        hasEmailPass: !!process.env.EMAIL_PASS,
-        emailUserLength: process.env.EMAIL_USER?.length,
-        emailPassLength: process.env.EMAIL_PASS?.length
-      });
-      return res.status(500).json({ 
+      const error = {
         error: 'Server configuration error',
         details: 'Missing email configuration',
         debug: {
           hasEmailUser: !!process.env.EMAIL_USER,
-          hasEmailPass: !!process.env.EMAIL_PASS
+          hasEmailPass: !!process.env.EMAIL_PASS,
+          platform: isNetlify ? 'Netlify' : 'Next.js'
         }
-      });
+      };
+      return isNetlify
+        ? { statusCode: 500, body: JSON.stringify(error) }
+        : res.status(500).json(error);
     }
 
     // Create a transporter using Gmail SMTP
@@ -73,14 +93,18 @@ export default async function handler(
       console.log('SMTP connection verified successfully');
     } catch (error) {
       console.error('SMTP verification failed:', error);
-      return res.status(500).json({ 
+      const errorResponse = {
         error: 'Email service configuration error',
         details: error instanceof Error ? error.message : 'Unknown error',
         debug: {
           errorName: error instanceof Error ? error.name : 'Unknown',
-          errorStack: error instanceof Error ? error.stack : undefined
+          errorStack: error instanceof Error ? error.stack : undefined,
+          platform: isNetlify ? 'Netlify' : 'Next.js'
         }
-      });
+      };
+      return isNetlify
+        ? { statusCode: 500, body: JSON.stringify(errorResponse) }
+        : res.status(500).json(errorResponse);
     }
 
     // Email content
@@ -106,12 +130,24 @@ export default async function handler(
     // Send email
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ message: 'Email sent successfully' });
+    const success = { message: 'Email sent successfully' };
+    return isNetlify
+      ? { statusCode: 200, body: JSON.stringify(success) }
+      : res.status(200).json(success);
+
   } catch (error) {
     console.error('Error sending email:', error);
-    return res.status(500).json({ 
+    const errorResponse = {
       error: 'Failed to send email. Please try again later.',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    });
+      details: error instanceof Error ? error.message : 'Unknown error',
+      debug: {
+        errorName: error instanceof Error ? error.name : 'Unknown',
+        errorStack: error instanceof Error ? error.stack : undefined,
+        platform: isNetlify ? 'Netlify' : 'Next.js'
+      }
+    };
+    return isNetlify
+      ? { statusCode: 500, body: JSON.stringify(errorResponse) }
+      : res.status(500).json(errorResponse);
   }
 }
