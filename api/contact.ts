@@ -43,6 +43,17 @@ const getSmtpConfig = () => {
   };
 };
 
+// Helper function to create response based on platform
+const createResponse = (isServerless: boolean, statusCode: number, data: ResponseData) => {
+  if (isServerless) {
+    return {
+      statusCode,
+      body: JSON.stringify(data)
+    };
+  }
+  return data;
+};
+
 // Unified handler that works for all platforms
 export default async function handler(
   req: NextApiRequest | any,
@@ -54,10 +65,7 @@ export default async function handler(
   // Handle serverless format (Netlify/Liara)
   if (isServerless) {
     if (req.httpMethod !== 'POST') {
-      return {
-        statusCode: 405,
-        body: JSON.stringify({ error: 'Method Not Allowed' })
-      };
+      return createResponse(isServerless, 405, { error: 'Method Not Allowed' });
     }
     req.body = JSON.parse(req.body);
   } else {
@@ -71,10 +79,9 @@ export default async function handler(
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
-      const error = { error: 'Missing required fields' };
       return isServerless
-        ? { statusCode: 400, body: JSON.stringify(error) }
-        : res.status(400).json(error);
+        ? createResponse(isServerless, 400, { error: 'Missing required fields' })
+        : res.status(400).json({ error: 'Missing required fields' });
     }
 
     // Verify environment variables
@@ -94,7 +101,7 @@ export default async function handler(
         }
       };
       return isServerless
-        ? { statusCode: 500, body: JSON.stringify(error) }
+        ? createResponse(isServerless, 500, error)
         : res.status(500).json(error);
     }
 
@@ -124,7 +131,7 @@ export default async function handler(
         }
       };
       return isServerless
-        ? { statusCode: 500, body: JSON.stringify(errorResponse) }
+        ? createResponse(isServerless, 500, errorResponse)
         : res.status(500).json(errorResponse);
     }
 
@@ -156,7 +163,7 @@ export default async function handler(
       debug: { platform }
     };
     return isServerless
-      ? { statusCode: 200, body: JSON.stringify(success) }
+      ? createResponse(isServerless, 200, success)
       : res.status(200).json(success);
 
   } catch (error) {
@@ -171,7 +178,7 @@ export default async function handler(
       }
     };
     return isServerless
-      ? { statusCode: 500, body: JSON.stringify(errorResponse) }
+      ? createResponse(isServerless, 500, errorResponse)
       : res.status(500).json(errorResponse);
   }
 } 
