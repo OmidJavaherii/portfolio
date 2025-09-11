@@ -30,9 +30,8 @@ export function AboutSection() {
               dashboard projects. Strong commitment to front-end architecture and performance optimization, working
               collaboratively with designers and back-end developers to create seamless, responsive, and reliable user
               interfaces. Driven by a passion for enhancing speed, maintainability, and user experience through clean code
-              and efficient solutions. Eager to leverage technical expertise and problem-solving skills in a forward-thinking
-              team to develop impactful digital products.
-
+              and efficient solutions. Eager to leverage technical expertise and ability to resolve complex technical
+              challenges in a forward-thinking team to develop impactful digital products.
             </p>
 
             <p className="mb-4">
