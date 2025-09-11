@@ -77,12 +77,12 @@ export function HeroSection() {
 
             <div className="mt-12 flex flex-wrap gap-8 justify-center lg:justify-start text-center lg:text-left">
               <div>
-                <div className="font-bold text-3xl text-primary">25+</div>
-                <div className="text-muted">Happy Clients</div>
+                <div className="font-bold text-3xl text-primary">5+</div>
+                <div className="text-muted">Successful Projects</div>
               </div>
               <div>
-                <div className="font-bold text-3xl text-primary">15+</div>
-                <div className="text-muted">Projects Completed</div>
+                <div className="font-bold text-3xl text-primary">1000+</div>
+                <div className="text-muted">Users</div>
               </div>
               <div>
                 <div className="font-bold text-3xl text-primary">6+</div>

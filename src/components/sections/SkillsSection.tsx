@@ -25,16 +25,16 @@ export function SkillsSection() {
   //       { name: "Bootstrap", level: "Advanced" },
   //     ]
   //   },
-  //   // {
-  //   //   name: "Backend",
-  //   //   skills: [
-  //   //     { name: "Node.js", level: 85 },
-  //   //     { name: "Express", level: 80 },
-  //   //     { name: "MongoDB", level: 75 },
-  //   //     { name: "SQL", level: 70 },
-  //   //     { name: "Firebase", level: 65 },
-  //   //   ]
-  //   // },
+    // {
+    //   name: "Backend",
+    //   skills: [
+    //     { name: "Node.js", level: 85 },
+    //     { name: "Express", level: 80 },
+    //     { name: "MongoDB", level: 75 },
+    //     { name: "SQL", level: 70 },
+    //     { name: "Firebase", level: 65 },
+    //   ]
+    // },
   //   {
   //     name: "Other Skills",
   //     skills: [
@@ -50,15 +50,15 @@ export function SkillsSection() {
   const skillCategories = [
     {
       name: "Frontend Development",
-      skills: ["Next.js","React.js","JavaScript", "TypeScript", "Redux"]
+      skills: ["Next.js","React.js","JavaScript", "TypeScript", "Zustand"]
     },
     {
       name: "CSS Frameworks",
-      skills: ["HTML/CSS", "Responsive Design", "Tailwind CSS", "Material UI", "Bootstrap"]
+      skills: ["HTML/CSS", "Daisy UI", "Tailwind CSS", "Material UI", "Bootstrap"]
     },
     {
       name: "Other Skills",
-      skills: ["Git/GitHub", "Rest API", "StoryBook", "SEO", "Testing"]
+      skills: ["React Query", "Rest API", "SEO", "Git / Github", "StoryBook"]
     }
   ];
 

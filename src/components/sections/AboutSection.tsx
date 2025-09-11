@@ -25,14 +25,14 @@ export function AboutSection() {
           <div>
             <h3 className="text-2xl font-bold mb-4">My Journey</h3>
             <p className="mb-4">
-              I’m a Front-End Developer with over 2 years of experience,
-              blending a background in project management from 20+ smart
-              building projects and 25+ happy clients. Skilled in
-              React, TypeScript, and Next.js. I thrive on crafting
-              high-performance, user-focused experiences. My knack for quickly mastering new
-              technologies drives me to deliver impactful digital
-              solutions—explore my work to see how I can bring value to your
-              next project.
+              Experienced Front-End Developer proficient in React, Next.js, TypeScript, and modern JavaScript. Specializes
+              in creating scalable and high-performance web applications with a focus on fintech, e-commerce, and
+              dashboard projects. Strong commitment to front-end architecture and performance optimization, working
+              collaboratively with designers and back-end developers to create seamless, responsive, and reliable user
+              interfaces. Driven by a passion for enhancing speed, maintainability, and user experience through clean code
+              and efficient solutions. Eager to leverage technical expertise and problem-solving skills in a forward-thinking
+              team to develop impactful digital products.
+
             </p>
 
             <p className="mb-4">
