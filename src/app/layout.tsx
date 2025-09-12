@@ -24,19 +24,19 @@ export const metadata: Metadata = {
   authors: [{ name: "Omid Javaheri" }],
   creator: "Omid Javaheri",
   publisher: "Omid Javaheri",
-  robots: "index, follow",
+  robots: "index",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://omidjavaheri.com",
+    url: "https://omidjavaheri.ir",
     siteName: "Omid Javaheri Portfolio",
     title: "Omid Javaheri - Portfolio",
     description: "Personal portfolio website showcasing my projects, skills, and experience.",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/images/profile.jpg",
+        width: 960,
+        height: 910,
         alt: "Omid Javaheri Portfolio",
       },
     ],
@@ -47,6 +47,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
 };
+
 const domain = "https://omidjavaheri.ir"
 const schemaPerson = {
   "@context": "https://schema.org",
