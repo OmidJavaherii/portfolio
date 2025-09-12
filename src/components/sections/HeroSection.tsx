@@ -60,7 +60,11 @@ export function HeroSection() {
                 onClick={(e) => handleScroll(e, "#projects")}
                 className="cursor-pointer"
               >
-                <Button size="lg" variant="primary" className="cursor-pointer">
+                <Button
+                  size="lg"
+                  variant="primary"
+                  className="cursor-pointer px-6 py-3 min-w-[48px] min-h-[48px] text-base leading-none"
+                >
                   View My Projects
                 </Button>
               </Link>
@@ -69,22 +73,26 @@ export function HeroSection() {
                 onClick={(e) => handleScroll(e, "#contact")}
                 className="cursor-pointer"
               >
-                <Button size="lg" variant="outline" className="cursor-pointer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="cursor-pointer px-6 py-3 min-w-[48px] min-h-[48px] text-base leading-none"
+                >
                   Contact Me
                 </Button>
               </Link>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-8 justify-center lg:justify-start text-center lg:text-left">
-              <div>
+              <div className="text-center">
                 <div className="font-bold text-3xl text-primary">5+</div>
                 <div className="text-muted">Successful Projects</div>
               </div>
-              <div>
+              <div className="text-center">
                 <div className="font-bold text-3xl text-primary">1000+</div>
                 <div className="text-muted">Users</div>
               </div>
-              <div>
+              <div className="text-center">
                 <div className="font-bold text-3xl text-primary">6+</div>
                 <div className="text-muted">Years Experience</div>
               </div>

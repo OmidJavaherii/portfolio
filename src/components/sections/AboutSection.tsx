@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "../ui/Button";
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { AnimatedNotes } from "../ui/Note";
+import Link from "next/link";
 
 export function AboutSection() {
   return (
@@ -62,14 +63,17 @@ export function AboutSection() {
                 <span>Computer Science - CS50x (2023)</span>
               </li>
             </ul>
-
-            <Button variant="secondary" className="mt-4">
-              <a href="./Resume-Omid-Javaheri.pdf" download>
+            <Link
+              href="./Resume-Omid-Javaheri.pdf"
+              download
+              rel="noopener noreferrer"
+              className="cursor-pointer mt-4"
+            >
+              <Button size="md" variant="secondary" className="cursor-pointer">
                 Download Resume
-              </a>
-            </Button>
+              </Button>
+            </Link>
           </div>
-
           <div>
             <AnimatedNotes />
           </div>

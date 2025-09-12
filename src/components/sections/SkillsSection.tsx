@@ -2,65 +2,9 @@
 
 import React from 'react';
 import { AnimatedSection, AnimatedElement } from '../ui/AnimatedSection';
+import { skillCategories } from '@/data/skills';
 
 export function SkillsSection() {
-  // const skillCategories = [
-  //   {
-  //     name: "Frontend Development",
-  //     skills: [
-  //       { name: "JavaScript", level: "Advanced" },
-  //       { name: "TypeScript", level: "Intermediate" },
-  //       { name: "React", level: "Advanced" },
-  //       { name: "Next.js", level: "Advanced" },
-  //       { name: "Redux", level: "Intermediate" },
-  //     ]
-  //   },
-  //   {
-  //     name: "CSS Frameworks",
-  //     skills: [
-  //       { name: "HTML/CSS", level: "Expert" },
-  //       { name: "Responsive Design", level: "Expert" },
-  //       { name: "Tailwind CSS", level: "Advanced" },
-  //       { name: "Material UI", level: "Advanced" },
-  //       { name: "Bootstrap", level: "Advanced" },
-  //     ]
-  //   },
-    // {
-    //   name: "Backend",
-    //   skills: [
-    //     { name: "Node.js", level: 85 },
-    //     { name: "Express", level: 80 },
-    //     { name: "MongoDB", level: 75 },
-    //     { name: "SQL", level: 70 },
-    //     { name: "Firebase", level: 65 },
-    //   ]
-    // },
-  //   {
-  //     name: "Other Skills",
-  //     skills: [
-  //       { name: "Git/GitHub", level: "Advanced" },
-  //       { name: "UI/UX Design", level: "Intermediate" },
-  //       { name: "Rest API", level: "Advanced" },
-  //       { name: "SEO", level: "Beginner" },
-  //       { name: "Testing", level: "Beginner" },
-  //     ]
-  //   }
-  // ];
-
-  const skillCategories = [
-    {
-      name: "Frontend Development",
-      skills: ["Next.js","React.js","JavaScript", "TypeScript", "Zustand"]
-    },
-    {
-      name: "CSS Frameworks",
-      skills: ["HTML/CSS", "Daisy UI", "Tailwind CSS", "Material UI", "Bootstrap"]
-    },
-    {
-      name: "Other Skills",
-      skills: ["React Query", "Rest API", "SEO", "Git / Github", "StoryBook"]
-    }
-  ];
 
   // const getLevelColor = (level: string) => {
   //   switch (level.toLowerCase()) {
@@ -78,8 +22,8 @@ export function SkillsSection() {
   // };
 
   return (
-    <AnimatedSection 
-      id="skills" 
+    <AnimatedSection
+      id="skills"
       className="py-20 bg-accent/5"
       animation="fadeIn"
       delay={0.1}
@@ -91,14 +35,14 @@ export function SkillsSection() {
             I&apos;m constantly learning and exploring new technologies to stay at the forefront of web development.
           </p>
         </div>
-        
+
         <AnimatedElement
           as="div"
           animation="fadeIn"
           delay={0.2}
         >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* {skillCategories.map((category, categoryIndex) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* {skillCategories.map((category, categoryIndex) => (
             <div key={categoryIndex} className="bg-card rounded-xl p-6 shadow-sm glass glass-hover">
               <h3 className="text-xl font-bold mb-4 pb-2 border-b">{category.name}</h3>
               <div className="space-y-4">
@@ -125,9 +69,9 @@ export function SkillsSection() {
               </div>
             </div>
           ))} */}
-          {skillCategories.map((category, categoryIndex) => (
-              <div 
-                key={categoryIndex} 
+            {skillCategories.map((category, categoryIndex) => (
+              <div
+                key={categoryIndex}
                 className="bg-card rounded-xl p-6 shadow-sm glass glass-hover hover:shadow-md transition-shadow"
               >
                 <h3 className="text-xl font-bold mb-4 pb-2 border-b border-accent/20">
@@ -135,7 +79,7 @@ export function SkillsSection() {
                 </h3>
                 <ul className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <li 
+                    <li
                       key={skillIndex}
                       className="flex items-center gap-3 text-base"
                     >
@@ -146,7 +90,7 @@ export function SkillsSection() {
                 </ul>
               </div>
             ))}
-        </div>
+          </div>
         </AnimatedElement>
       </div>
     </AnimatedSection>

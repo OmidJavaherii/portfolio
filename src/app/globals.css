@@ -1,15 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #dee5edd7;  /* Lighter, softer white */
-  --foreground: #334155;  /* Softer dark gray */
-  --primary: #0b53c1d4;     /* Sky blue */
+  --background: #dee5edd7;
+  /* Lighter, softer white */
+  --foreground: #334155;
+  /* Softer dark gray */
+  --primary: #0b53c1d4;
+  /* Sky blue */
   --primary-dark: #0284c7;
-  --secondary: #9b2e66;   /* Pink */
-  --accent: #8b5cf6;      /* Purple */
-  --muted: #64748b;       /* Softer gray */
-  --card: #00000011;        /* Pure white for cards */
-  --border: #9fa3a9;      /* Light gray border */
+  --secondary: #9b2e66;
+  /* Pink */
+  --accent: #8b5cf6;
+  /* Purple */
+  --muted: #64748b;
+  /* Softer gray */
+  --card: #00000011;
+  /* Pure white for cards */
+  --border: #9fa3a9;
+  /* Light gray border */
   --radius: 0.5rem;
   --transition: all 0.3s ease;
   --transition-slow: all 0.5s ease;
@@ -34,24 +42,30 @@
 .dark {
   --background: #0f172a;
   --foreground: #f8fafc;
-  --primary: #38bdf8;
-  --primary-dark: #0ea5e9;
+  --primary: #0ea5e9;
+  --primary-dark: #38bdf8;
   --card: #1e293b;
   --border: #334155;
 }
 
 /* Basic animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInScale {
-  from { 
+  from {
     opacity: 0;
     transform: scale(0.9);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: scale(1);
   }
@@ -62,6 +76,7 @@
     transform: translateY(100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -69,59 +84,91 @@
 }
 
 @keyframes slideRight {
-  from { 
+  from {
     transform: translateX(-20px);
     opacity: 0;
   }
-  to { 
+
+  to {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes slideLeft {
-  from { 
+  from {
     transform: translateX(20px);
     opacity: 0;
   }
-  to { 
+
+  to {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 body {
@@ -166,12 +213,10 @@ body {
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0));
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -180,24 +225,70 @@ body {
   animation: bounce 2s ease infinite;
 }
 
-.staggered-delay > *:nth-child(1) { animation-delay: 0.1s; }
-.staggered-delay > *:nth-child(2) { animation-delay: 0.2s; }
-.staggered-delay > *:nth-child(3) { animation-delay: 0.3s; }
-.staggered-delay > *:nth-child(4) { animation-delay: 0.4s; }
-.staggered-delay > *:nth-child(5) { animation-delay: 0.5s; }
-.staggered-delay > *:nth-child(6) { animation-delay: 0.6s; }
+.staggered-delay>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.staggered-delay>*:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.staggered-delay>*:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.staggered-delay>*:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.staggered-delay>*:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.staggered-delay>*:nth-child(6) {
+  animation-delay: 0.6s;
+}
 
 /* Long delays for scroll reveal */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
-.delay-900 { animation-delay: 0.9s; }
-.delay-1000 { animation-delay: 1s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+.delay-800 {
+  animation-delay: 0.8s;
+}
+
+.delay-900 {
+  animation-delay: 0.9s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
 
 /* Transition classes */
 .hover-lift {
@@ -326,33 +417,32 @@ body {
   height: 300%;
   top: -100%;
   left: -100%;
-  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
   /* animation: aurora 20s linear infinite; */
 }
 
 .aurora-bg::before {
-  background: radial-gradient(circle at center, 
-    rgba(56, 189, 248, 0.15) 0%,
-    rgba(139, 92, 246, 0.15) 25%,
-    rgba(155, 46, 102, 0.15) 50%,
-    transparent 100%
-  );
+  background: radial-gradient(circle at center,
+      rgba(56, 189, 248, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 25%,
+      rgba(155, 46, 102, 0.15) 50%,
+      transparent 100%);
   animation-delay: -10s;
 }
 
 .aurora-bg::after {
   background: radial-gradient(circle at center,
-    rgba(139, 92, 246, 0.15) 0%,
-    rgba(155, 46, 102, 0.15) 25%,
-    rgba(56, 189, 248, 0.15) 50%,
-    transparent 100%
-  );
+      rgba(139, 92, 246, 0.15) 0%,
+      rgba(155, 46, 102, 0.15) 25%,
+      rgba(56, 189, 248, 0.15) 50%,
+      transparent 100%);
 }
 
 @keyframes aurora {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -428,51 +518,113 @@ html {
 
 /* Hide scrollbar for IE, Edge and Firefox when not needed */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
 .loader {
   width: 60px;
   aspect-ratio: 1;
-  --c:no-repeat linear-gradient(#046D8B 0 0);
+  --c: no-repeat linear-gradient(#046D8B 0 0);
   background:
     var(--c) 0 38px,
     var(--c) right 18px bottom 18px,
-    var(--c) right 18px top    18px,
+    var(--c) right 18px top 18px,
     var(--c) 18px 18px,
     var(--c) 18px 100%,
     var(--c) 100% 100%,
     var(--c) 100% 0,
     var(--c) 0 0;
-  animation: 
+  animation:
     l8-1 2s infinite,
     l8-2 2s infinite;
 }
+
 @keyframes l8-1 {
-  0%     {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   }
-  6.25%  {background-size: 40px 4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   }
-  12.5%  {background-size: 40px 4px,4px 20px,0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   }
-  18.75% {background-size: 40px 4px,4px 20px,20px 4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   }
-  25%    {background-size: 40px 4px,4px 20px,20px 4px,4px 40px,0    4px,4px 0   ,0    4px,4px 0   }
-  31.25% {background-size: 40px 4px,4px 20px,20px 4px,4px 40px,40px 4px,4px 0   ,0    4px,4px 0   }
-  37.5%  {background-size: 40px 4px,4px 20px,20px 4px,4px 40px,40px 4px,4px 100%,0    4px,4px 0   }
-  43.75% {background-size: 40px 4px,4px 20px,20px 4px,4px 40px,40px 4px,4px 100%,100% 4px,4px 0   }
+  0% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  6.25% {
+    background-size: 40px 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  12.5% {
+    background-size: 40px 4px, 4px 20px, 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  18.75% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  25% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 40px, 0 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  31.25% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 40px, 40px 4px, 4px 0, 0 4px, 4px 0
+  }
+
+  37.5% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 40px, 40px 4px, 4px 100%, 0 4px, 4px 0
+  }
+
+  43.75% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 40px, 40px 4px, 4px 100%, 100% 4px, 4px 0
+  }
+
   48%,
-  52%    {background-size: 40px 4px,4px 20px,20px 4px,4px 40px,40px 4px,4px 100%,100% 4px,4px 40px}
-  56.25% {background-size: 0    4px,4px 20px,20px 4px,4px 40px,40px 4px,4px 100%,100% 4px,4px 40px}
-  62.5%  {background-size: 0    4px,4px 0   ,20px 4px,4px 40px,40px 4px,4px 100%,100% 4px,4px 40px}
-  68.75% {background-size: 0    4px,4px 0   ,0    4px,4px 40px,40px 4px,4px 100%,100% 4px,4px 40px}
-  75%    {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,40px 4px,4px 100%,100% 4px,4px 40px}
-  81.25% {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 100%,100% 4px,4px 40px}
-  87.5%  {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   ,100% 4px,4px 40px}
-  93.75% {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 40px}
-  100%   {background-size: 0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   ,0    4px,4px 0   }
+  52% {
+    background-size: 40px 4px, 4px 20px, 20px 4px, 4px 40px, 40px 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  56.25% {
+    background-size: 0 4px, 4px 20px, 20px 4px, 4px 40px, 40px 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  62.5% {
+    background-size: 0 4px, 4px 0, 20px 4px, 4px 40px, 40px 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  68.75% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 40px, 40px 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  75% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 40px 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  81.25% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 100%, 100% 4px, 4px 40px
+  }
+
+  87.5% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0, 100% 4px, 4px 40px
+  }
+
+  93.75% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 40px
+  }
+
+  100% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0, 0 4px, 4px 0
+  }
 }
+
 @keyframes l8-2 {
-  0%,49.9% {background-position:0 38px, right 18px bottom 18px, right 18px top 18px,18px 18px,18px 100%,100% 100%,100% 0,0 0}
-  50%,100% {background-position:right 18px bottom 18px, right 18px top 18px, 18px 18px,18px 100%,100% 100%,100% 0,0 0,bottom 18px left 0}
+
+  0%,
+  49.9% {
+    background-position: 0 38px, right 18px bottom 18px, right 18px top 18px, 18px 18px, 18px 100%, 100% 100%, 100% 0, 0 0
+  }
+
+  50%,
+  100% {
+    background-position: right 18px bottom 18px, right 18px top 18px, 18px 18px, 18px 100%, 100% 100%, 100% 0, 0 0, bottom 18px left 0
+  }
 }
 
 .animate-slideUp {
@@ -493,7 +645,7 @@ html {
   :root {
     color-scheme: dark;
   }
-  
+
   .dark {
     color-scheme: dark;
   }
@@ -511,7 +663,7 @@ html {
   .ios-app {
     min-height: -webkit-fill-available;
   }
-  
+
   body {
     min-height: -webkit-fill-available;
   }

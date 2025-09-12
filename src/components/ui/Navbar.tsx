@@ -7,35 +7,9 @@ import { AnimatedSection } from './AnimatedSection';
 import { Button } from './Button';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { navbarData } from '@/data/navbar';
 
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-interface NavbarProps {
-  logo?: string | React.ReactNode;
-  navItems?: NavItem[];
-  ctaButton?: {
-    label: string;
-    href: string;
-  };
-}
-
-export function Navbar({ 
-  navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Contact', href: '#contact' },
-  ],
-  ctaButton = {
-    label: 'Resume',
-    href: './Resume-Omid-Javaheri.pdf',
-  }
-}: NavbarProps) {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -56,10 +30,10 @@ export function Navbar({
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    
+
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       const headerOffset = 80; // Adjust this value based on your header height
       const elementPosition = element.getBoundingClientRect().top;
@@ -74,9 +48,8 @@ export function Navbar({
 
   return (
     <AnimatedSection
-      className={`fixed pt-2.5 h-10 max-sm:pt-3 max-sm:pb-12 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
+      className={`fixed pt-2.5 h-10 max-sm:pt-3 max-sm:pb-12 md:py-15! md:-mt-8 top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        }`}
       animation="fadeIn"
       delay={0.1}
     >
@@ -89,22 +62,28 @@ export function Navbar({
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center
           md:space-x-3 lg:space-x-8">
-            {navItems.map((item) => (
+            {navbarData.navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleScroll(e, item.href)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.href ? 'text-primary' : 'text-muted'
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-primary ${pathname === item.href ? 'text-primary' : 'text-muted'
+                  }`}
               >
                 {item.label}
               </Link>
             ))}
             <ThemeToggle />
-            <Button variant="primary" size="sm">
-              <a href={ctaButton.href} download rel="noopener noreferrer">{ctaButton.label}</a>
-            </Button>
+            <Link
+              href={navbarData.ctaButton.href}
+              download
+              rel="noopener noreferrer"
+              className="cursor-pointer"
+            >
+              <Button size="sm" variant="primary" className="cursor-pointer">
+                {navbarData.ctaButton.label}
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -126,28 +105,31 @@ export function Navbar({
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden fixed left-0 w-full min-h-screen top-0 pt-6 z-10 transition-all bg-background/95 dark:bg-background/98 backdrop-blur-md duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-          }`}
+          className={`md:hidden fixed left-0 w-full min-h-screen top-0 pt-6 z-10 transition-all bg-background/95 dark:bg-background/98 backdrop-blur-md duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+            }`}
         >
           <nav className="flex flex-col items-center justify-center h-full space-y-8">
-            {navItems.map((item) => (
+            {navbarData.navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleScroll(e, item.href)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-primary transform hover:scale-110 ${
-                  pathname === item.href ? 'text-primary' : 'text-muted'
-                }`}
+                className={`text-sm font-medium transition-all duration-300 hover:text-primary transform hover:scale-110 ${pathname === item.href ? 'text-primary' : 'text-muted'
+                  }`}
               >
                 {item.label}
               </Link>
             ))}
-            <Button variant="primary" size="sm" className="mt-4">
-              <a href={ctaButton.href} target="_blank" rel="noopener noreferrer">
-                {ctaButton.label}
-              </a>
-            </Button>
+            <Link
+              href={navbarData.ctaButton.href}
+              download
+              rel="noopener noreferrer"
+              className="cursor-pointer mt-4"
+            >
+              <Button size="lg" variant="primary" className="cursor-pointer">
+                {navbarData.ctaButton.label}
+              </Button>
+            </Link>
           </nav>
         </div>
       </div>

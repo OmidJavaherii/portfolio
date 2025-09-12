@@ -68,8 +68,8 @@ export function InstallPWA() {
           <h3 className="font-semibold">
             {isIOS ? 'Add to Home Screen' : 'Install App'}
           </h3>
-          <p className="text-sm text-muted">
-            {isIOS 
+          <p className="text-sm text-primary">
+            {isIOS
               ? 'Add this website to your home screen for quick access'
               : 'Install this app on your device for quick access'
             }
@@ -77,8 +77,8 @@ export function InstallPWA() {
         </div>
         <button
           onClick={() => setIsVisible(false)}
-          className="text-muted hover:text-foreground transition-colors"
-          area-label="close"
+          className="text-muted hover:text-foreground focus:ring-2 focus:ring-primary focus:outline-none transition-colors"
+          aria-label="Close installation prompt"
         >
           <X className="w-5 h-5" />
         </button>

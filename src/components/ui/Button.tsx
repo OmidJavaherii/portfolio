@@ -26,7 +26,7 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-md transition-all';
   
   const variantStyles = {
-    primary: 'bg-primary hover:bg-primary-dark text-white shadow-sm hover:shadow',
+    primary: 'bg-primary hover:bg-primary-dark text-gray-900 shadow-sm hover:shadow',
     secondary: 'bg-secondary hover:opacity-90 text-white shadow-sm hover:shadow',
     outline: 'border border-border hover:border-primary hover:text-primary',
     ghost: 'hover:bg-background hover:text-primary',
