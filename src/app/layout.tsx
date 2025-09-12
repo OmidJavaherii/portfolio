@@ -4,13 +4,15 @@ import "./globals.css";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { registerServiceWorker } from "@/utils/registerServiceWorker";
+import { footerData } from "@/data/footer";
+import { experiences } from "@/data/experiences";
+import { projects } from "@/data/projects";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  // maximumScale: 1,
   viewportFit: "cover",
   themeColor: "#046D8B",
 };
@@ -45,6 +47,47 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
 };
+const domain = "https://omidjavaheri.ir"
+const schemaPerson = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: footerData.name,
+  jobTitle: experiences[0]?.title || "Frontend Developer",
+  url: domain,
+  image: `${domain}/images/profile.jpg`,
+  sameAs: footerData.socialLinks.map((link) => link.url),
+  worksFor: {
+    "@type": "Organization",
+    name: experiences[0]?.company,
+  },
+  alumniOf: experiences.find((exp) =>
+    exp.company.includes("Islamic Azad University")
+  )?.company || "Islamic Azad University, Central Tehran Branch",
+};
+
+const schemaWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: `${footerData.name} Portfolio`,
+  url: domain,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${domain}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const schemaProjects = projects.map((project) => ({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: project.title,
+  description: project.description,
+  url: project.preview || project.link || domain,
+  creator: {
+    "@type": "Person",
+    name: footerData.name,
+  },
+}));
 
 export default function RootLayout({
   children,
@@ -79,6 +122,18 @@ export default function RootLayout({
         <ThemeProvider>
           <LayoutContent>{children}</LayoutContent>
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPerson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebSite) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaProjects) }}
+        />
       </body>
     </html>
   );
