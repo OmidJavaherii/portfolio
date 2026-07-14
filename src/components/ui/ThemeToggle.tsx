@@ -1,9 +1,8 @@
 "use client";
 
-import React from 'react';
-import { useTheme } from '@/providers/ThemeProvider';
-import { Sun, Moon } from 'lucide-react';
-import { Button } from './Button';
+import { useTheme } from "@/providers/ThemeProvider";
+import { Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -11,23 +10,26 @@ export function ThemeToggle() {
   return (
     <Button
       variant="ghost"
-      size="sm"
+      size="icon"
       onClick={toggleTheme}
-      className="relative w-10 h-10 p-0 pr-8"
-      aria-label="Toggle theme"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
-      <div className="relative w-5 h-5">
+      <span className="relative flex h-5 w-5 items-center justify-center">
         <Sun
-          className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
-            theme === 'dark' ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'
+          className={`absolute h-5 w-5 transition-all duration-300 ${
+            theme === "dark"
+              ? "scale-0 rotate-90 opacity-0"
+              : "scale-100 rotate-0 opacity-100"
           }`}
         />
         <Moon
-          className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
-            theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-0'
+          className={`absolute h-5 w-5 transition-all duration-300 ${
+            theme === "dark"
+              ? "scale-100 rotate-0 opacity-100"
+              : "scale-0 -rotate-90 opacity-0"
           }`}
         />
-      </div>
+      </span>
     </Button>
   );
-} 
+}

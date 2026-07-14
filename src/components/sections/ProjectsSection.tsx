@@ -1,56 +1,150 @@
 "use client";
 
-import React from "react";
-import { Card } from "../ui/Card";
-import { Button } from "../ui/Button";
-import { AnimatedElement, AnimatedSection } from "../ui/AnimatedSection";
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import { SectionShell } from "@/components/layout/SectionShell";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { projects } from "@/data/projects";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
-export function ProjectsSection() {
+function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: (typeof projects)[0];
+  featured?: boolean;
+}) {
   return (
-    <AnimatedSection
-      id="projects"
-      className="py-20 bg-background"
-      animation="fadeIn"
-      delay={0.1}
+    <article
+      className={`panel panel-hover group grid h-full overflow-hidden ${
+        featured ? "md:grid-cols-2" : ""
+      }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-          <p className="text-muted max-w-2xl mx-auto">
-            Here are some of my recent projects. Each project represents a
-            unique challenge and solution.
-          </p>
-        </div>
-
-        <AnimatedElement as="div" animation="fadeInScale" delay={0.2}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card
-                key={index}
-                title={project.title}
-                description={project.description}
-                imageSrc={project.imageSrc}
-                tags={project.tags}
-                link={project.link}
-                preview={project.preview}
-              />
-            ))}
-          </div>
-        </AnimatedElement>
-
-        <div className="text-center mt-12">
-          <Button variant="secondary">
-            <a
-              href="https://github.com/omidjavaherii"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View All Projects
-            </a>
-          </Button>
+      <div
+        className={`relative overflow-hidden bg-secondary ${
+          featured ? "aspect-video md:aspect-auto md:min-h-[320px]" : "aspect-video"
+        }`}
+      >
+        <ProjectImage
+          src={project.imageSrc}
+          alt={project.title}
+          title={project.title}
+          featured={featured}
+        />
+        <div className="absolute left-0 top-0 bg-primary px-3 py-1.5 font-mono-label text-[9px] uppercase tracking-wider text-primary-foreground">
+          {featured ? "Featured" : "Project"}
         </div>
       </div>
-    </AnimatedSection>
+
+      <div className="flex flex-col p-6 md:p-8">
+        <div className="mb-auto">
+          <h3
+            className={`font-display font-bold leading-tight tracking-tight ${
+              featured ? "text-2xl md:text-3xl" : "text-xl"
+            }`}
+          >
+            {project.title}
+          </h3>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            {project.description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {project.tags.slice(0, featured ? 8 : 5).map((tag) => (
+              <Badge key={tag} variant="outline" className="font-mono-label text-[10px]">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-2 border-t border-border pt-5">
+          {project.preview && (
+            <Button size="sm" asChild>
+              <a
+                href={project.preview}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </Button>
+          )}
+          {project.link && (
+            <Button size="sm" variant="outline" asChild>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Code
+                <Github className="h-3 w-3" />
+              </a>
+            </Button>
+          )}
+          <ArrowUpRight className="ml-auto h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-primary" />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function ProjectsSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const [featured, ...rest] = projects;
+
+  return (
+    <SectionShell
+      id="projects"
+      label="Work"
+      index={3}
+      title="Selected projects"
+      description="Real products with measurable outcomes — logistics, trading, e-commerce, and tools."
+    >
+      <motion.div
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "visible"}
+        viewport={{ once: true, margin: "-60px" }}
+        variants={staggerContainer}
+        className="space-y-px bg-border"
+      >
+        {featured && (
+          <motion.div variants={fadeUp}>
+            <ProjectCard project={featured} featured />
+          </motion.div>
+        )}
+
+        <div className="grid gap-px bg-border md:grid-cols-2">
+          {rest.map((project) => (
+            <motion.div key={project.title} variants={fadeUp}>
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="mt-10"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "visible"}
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
+        <Button variant="outline" size="lg" asChild>
+          <Link
+            href="https://github.com/omidjavaherii"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            All projects on GitHub
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </motion.div>
+    </SectionShell>
   );
 }

@@ -1,31 +1,29 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { Home } from 'lucide-react';
+import Link from "next/link";
+import { Home } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <AnimatedSection 
-      className="min-h-screen flex items-center justify-center h-full bg-gradient-to-b from-accent/5 z-30 via-background to-background"
-      animation="fadeInScale"
-      delay={0.1}
-    >
-      <div className="text-center px-4">
-        <h1 className="text-6xl md:text-8xl font-bold text-primary mb-4">404</h1>
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4">Page Not Found</h2>
-        <p className="text-muted mb-8 max-w-md mx-auto">
-          Oops! The page you&apos;re looking for doesn&apos;t exist or has been moved.
+    <section className="flex min-h-dvh items-center justify-center gradient-mesh px-4">
+      <div className="text-center">
+        <p className="font-mono-label text-[10px] uppercase tracking-[0.2em] text-primary">
+          404
         </p>
-        <Button variant="primary" size="lg">
-          <Link href="/" className="flex items-center gap-2">
-            <Home className="w-5 h-5" />
-            Back to Home
+        <h1 className="mt-4 font-display text-5xl font-bold md:text-7xl">
+          Not found
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+          This page doesn&apos;t exist or has been moved.
+        </p>
+        <Button asChild size="lg" className="mt-8">
+          <Link href="/">
+            <Home className="h-4 w-4" />
+            Back home
           </Link>
         </Button>
       </div>
-    </AnimatedSection>
+    </section>
   );
-} 
+}

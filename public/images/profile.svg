@@ -1,5 +1,8 @@
 <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="500" height="500" fill="#0ea5e9"/>
-  <circle cx="250" cy="180" r="80" fill="#f8fafc"/>
-  <path d="M250 280C180 280 120 340 120 410V500H380V410C380 340 320 280 250 280Z" fill="#f8fafc"/>
-</svg> 
+  <rect width="500" height="500" fill="#08090d"/>
+  <rect x="40" y="40" width="420" height="420" stroke="#1e2230" stroke-width="1"/>
+  <circle cx="250" cy="190" r="70" fill="#10121a" stroke="#ff6b3d" stroke-width="2"/>
+  <path d="M250 275C185 275 130 330 130 400V460H370V400C370 330 315 275 250 275Z" fill="#10121a" stroke="#8b7cf8" stroke-width="1.5"/>
+  <line x1="40" y1="460" x2="460" y2="460" stroke="#1e2230"/>
+  <text x="50" y="485" fill="#7a8299" font-family="monospace" font-size="12">OJ / FRONT-END</text>
+</svg>

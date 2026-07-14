@@ -1,98 +1,86 @@
 "use client";
 
-import React from 'react';
-import { AnimatedSection, AnimatedElement } from '../ui/AnimatedSection';
-import { skillCategories } from '@/data/skills';
+import { motion, useReducedMotion } from "motion/react";
+import { SectionShell } from "@/components/layout/SectionShell";
+import { Badge } from "@/components/ui/badge";
+import { skillCategories } from "@/data/skills";
+import { fadeUp, staggerContainer } from "@/lib/motion";
+
+const coreStack = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Three.js",
+  "Performance",
+];
 
 export function SkillsSection() {
-
-  // const getLevelColor = (level: string) => {
-  //   switch (level.toLowerCase()) {
-  //     case 'expert':
-  //       return 'bg-primary';
-  //     case 'advanced':
-  //       return 'bg-accent';
-  //     case 'intermediate':
-  //       return 'bg-secondary';
-  //     case 'beginner':
-  //       return 'bg-muted';
-  //     default:
-  //       return 'bg-muted';
-  //   }
-  // };
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <AnimatedSection
+    <SectionShell
       id="skills"
-      className="py-20 bg-accent/5"
-      animation="fadeIn"
-      delay={0.1}
+      label="Skills"
+      index={4}
+      title="Tools I reach for"
+      description="A focused toolkit — always learning, always shipping."
+      alternate
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
-          <p className="text-muted text-center mb-12">
-            I&apos;m constantly learning and exploring new technologies to stay at the forefront of web development.
-          </p>
+      <motion.div
+        className="panel mb-px bg-card p-6 md:p-8"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "visible"}
+        viewport={{ once: true, margin: "-60px" }}
+        variants={fadeUp}
+      >
+        <p className="font-mono-label text-[10px] uppercase tracking-[0.18em] text-primary">
+          Core stack
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {coreStack.map((skill) => (
+            <Badge key={skill} className="px-3 py-1.5 font-mono-label text-[11px]">
+              {skill}
+            </Badge>
+          ))}
         </div>
+      </motion.div>
 
-        <AnimatedElement
-          as="div"
-          animation="fadeIn"
-          delay={0.2}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-card rounded-xl p-6 shadow-sm glass glass-hover">
-              <h3 className="text-xl font-bold mb-4 pb-2 border-b">{category.name}</h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className={`text-xs px-2 py-1 rounded-full ${getLevelColor(skill.level)}/10 text-${getLevelColor(skill.level).split('-')[1]}`}>
-                        {skill.level}
-                      </span>
-                    </div>
-                    <div className="w-full bg-accent/10 rounded-full h-2">
-                      <div 
-                        className={`h-2 rounded-full ${getLevelColor(skill.level)}`}
-                        style={{ 
-                          width: skill.level === 'Expert' ? '100%' : 
-                                 skill.level === 'Advanced' ? '80%' : 
-                                 skill.level === 'Intermediate' ? '60%' : '40%' 
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))} */}
-            {skillCategories.map((category, categoryIndex) => (
-              <div
-                key={categoryIndex}
-                className="bg-card rounded-xl p-6 shadow-sm glass glass-hover hover:shadow-md transition-shadow"
-              >
-                <h3 className="text-xl font-bold mb-4 pb-2 border-b border-accent/20">
-                  {category.name}
-                </h3>
-                <ul className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <li
-                      key={skillIndex}
-                      className="flex items-center gap-3 text-base"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-accent"></span>
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </AnimatedElement>
-      </div>
-    </AnimatedSection>
+      <motion.div
+        className="grid gap-px bg-border md:grid-cols-3"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "visible"}
+        viewport={{ once: true, margin: "-60px" }}
+        variants={staggerContainer}
+      >
+        {skillCategories.map((category, index) => (
+          <motion.section
+            key={category.name}
+            variants={fadeUp}
+            className="panel panel-hover bg-card p-6 md:p-8"
+            aria-labelledby={`skill-${index}`}
+          >
+            <p className="font-mono-label text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3
+              id={`skill-${index}`}
+              className="mt-3 font-display text-lg font-bold tracking-tight"
+            >
+              {category.name}
+            </h3>
+            <ul className="mt-5 flex flex-wrap gap-1.5">
+              {category.skills.map((skill) => (
+                <li key={skill}>
+                  <Badge variant="outline" className="font-normal text-xs">
+                    {skill}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+        ))}
+      </motion.div>
+    </SectionShell>
   );
-} 
+}

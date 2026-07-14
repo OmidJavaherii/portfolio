@@ -1,21 +1,22 @@
 "use client";
 
-import React from 'react';
 import { usePathname } from "next/navigation";
-import { Navbar } from "@/components/ui/Navbar";
+import { Header } from "@/components/layout/Header";
+import { ScrollRail } from "@/components/layout/ScrollRail";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { InstallPWA } from "@/components/ui/InstallPWA";
 
 export function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isNotFoundPage = pathname === '/not-found';
+  const isNotFoundPage = pathname === "/not-found";
 
   return (
     <>
-      {!isNotFoundPage && <Navbar />}
-      <main className="min-h-screen">{children}</main>
+      {!isNotFoundPage && <SkipLink />}
+      {!isNotFoundPage && <Header />}
+      {!isNotFoundPage && <ScrollRail />}
+      <div id="main-content">{children}</div>
       {!isNotFoundPage && <ScrollToTop />}
-      <InstallPWA />
     </>
   );
-} 
+}

@@ -1,66 +1,111 @@
 "use client";
 
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { SectionShell } from "@/components/layout/SectionShell";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { experiences } from "@/data/experiences";
-import { AnimatedSection } from "../ui/AnimatedSection";
-import { AnimatedElement } from "../ui/AnimatedSection";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 export function ExperienceSection() {
-  return (
-    <AnimatedSection
-      id="experience"
-      className="py-20 px-4 sm:px-6 lg:px-8 dark:bg-accent/2"
-      animation="fadeIn"
-      delay={0.1}
-    >
-      <div className="max-w-7xl mx-auto">
-        <AnimatedElement
-          as="div"
-          className="text-center mb-16"
-          animation="slideUp"
-          delay={0.2}
-        >
-          <h2 className="text-3xl font-bold mb-4">Experience</h2>
-          <p className="text-lg text-current/50">
-            My professional journey and work experience
-          </p>
-        </AnimatedElement>
+  const prefersReducedMotion = useReducedMotion();
 
-        <div className="space-y-12">
+  return (
+    <SectionShell
+      id="experience"
+      label="Experience"
+      index={2}
+      title="Where I've shipped product"
+      description="Recent roles across logistics, trading, e-commerce, and education."
+      alternate
+    >
+      <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:gap-16">
+        <motion.aside
+          initial={prefersReducedMotion ? false : "hidden"}
+          whileInView={prefersReducedMotion ? undefined : "visible"}
+          viewport={{ once: true, margin: "-60px" }}
+          variants={fadeUp}
+          className="lg:sticky lg:top-28 lg:self-start"
+        >
+          <div className="panel p-6">
+            <p className="font-mono-label text-[10px] uppercase tracking-[0.18em] text-primary">
+              Summary
+            </p>
+            <p className="mt-4 text-sm leading-6 text-muted-foreground">
+              Logistics, trading dashboards, e-commerce, education, and
+              technical project management.
+            </p>
+            <Button asChild className="mt-6 w-full">
+              <Link
+                href="./Resume-Omid-Javaheri.pdf"
+                download
+                rel="noopener noreferrer"
+              >
+                Full CV
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </motion.aside>
+
+        <motion.ol
+          className="relative space-y-0"
+          initial={prefersReducedMotion ? false : "hidden"}
+          whileInView={prefersReducedMotion ? undefined : "visible"}
+          viewport={{ once: true, margin: "-60px" }}
+          variants={staggerContainer}
+        >
+          <div className="absolute bottom-0 left-[11px] top-0 w-px bg-border" aria-hidden />
+
           {experiences.map((experience, index) => (
-            <AnimatedElement
-              key={index}
-              as="div"
-              className="relative pl-8 border-l-2 border-accent mb-0 py-8"
-              animation="slideUp"
-              delay={0.3 + index * 0.1}
+            <motion.li
+              key={`${experience.company}-${experience.period}`}
+              variants={fadeUp}
+              className="group relative pb-10 pl-10 last:pb-0"
             >
-              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-accent" />
-              <div className="mb-4">
-                <h3 className="text-xl font-semibold">{experience.title}</h3>
-                <p className="">{experience.company}</p>
-                <p className="text-sm text-current/50">{experience.period}</p>
+              <span
+                className="absolute left-0 top-1.5 h-[22px] w-[22px] border border-border bg-background transition-colors group-hover:border-primary group-hover:bg-primary/10"
+                aria-hidden
+              />
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")} — {experience.period}
+                  </p>
+                  <h3 className="mt-2 font-display text-xl font-bold tracking-tight md:text-2xl">
+                    {experience.title}
+                  </h3>
+                  <p className="mt-1 text-sm font-medium text-primary">
+                    {experience.company}
+                  </p>
+                </div>
               </div>
-              <ul className="list-disc list-inside mb-4 space-y-2">
-                {experience.description.map((item, i) => (
-                  <li key={i} className="text-current/50">
-                    {item}
+
+              <ul className="mt-4 space-y-2">
+                {experience.description.slice(0, 3).map((item, itemIndex) => (
+                  <li
+                    key={`${experience.company}-${itemIndex}`}
+                    className="text-sm leading-6 text-muted-foreground"
+                  >
+                    — {item}
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2">
-                {experience.technologies.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 text-sm rounded-full bg-accent/10 text-accent"
-                  >
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {experience.technologies.slice(0, 8).map((tech) => (
+                  <Badge key={tech} variant="muted" className="font-mono-label text-[10px]">
                     {tech}
-                  </span>
+                  </Badge>
                 ))}
               </div>
-            </AnimatedElement>
+            </motion.li>
           ))}
-        </div>
+        </motion.ol>
       </div>
-    </AnimatedSection>
+    </SectionShell>
   );
 }

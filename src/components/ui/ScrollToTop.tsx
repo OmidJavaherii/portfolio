@@ -1,47 +1,52 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
-import { AnimatedSection } from './AnimatedSection';
+import { useEffect, useState } from "react";
+import { ArrowUp } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { Button } from "@/components/ui/button";
 
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.pageYOffset > 400);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    toggleVisibility();
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? "auto" : "smooth",
     });
   };
 
   return (
-    <AnimatedSection
-      className={`fixed bottom-8 right-8 z-50 transition-all duration-300 ${
-        isVisible ? 'opacity-100 translate-y-0 transition-opacity duration-300' : 'opacity-0 hidden translate-y-10'
-      }`}
-      animation="fadeIn"
-      delay={0.1}
-    >
-      <button
-        onClick={scrollToTop}
-        className="group p-3 rounded-full bg-primary/10 hover:bg-primary/20 backdrop-blur-sm shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-6 h-6 text-primary transition-transform duration-300 group-hover:-translate-y-1" />
-      </button>
-    </AnimatedSection>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          className="fixed bottom-6 right-4 z-50 safe-bottom md:bottom-8 md:right-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={scrollToTop}
+            className="h-10 w-10 border-border bg-background/90 backdrop-blur-sm"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="h-4 w-4" />
+          </Button>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
-} 
+}

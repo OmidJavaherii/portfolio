@@ -1,84 +1,140 @@
 "use client";
 
-import React from "react";
-import { Button } from "../ui/Button";
-import { AnimatedSection } from "../ui/AnimatedSection";
-import { AnimatedNotes } from "../ui/Note";
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { SectionShell } from "@/components/layout/SectionShell";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { fadeUp, staggerContainer } from "@/lib/motion";
+
+const highlights = [
+  {
+    tag: "Stack",
+    title: "Multi-framework experience",
+    body: "React, Next.js, TypeScript, and modern tooling across fintech, e-commerce, and dashboards.",
+  },
+  {
+    tag: "Status",
+    title: "Open to opportunities",
+    body: "Accepting frontend roles and product team collaborations.",
+    open: true,
+  },
+  {
+    tag: "OSS",
+    title: "Open source contributor",
+    body: "Projects with 1000+ GitHub stars in the community.",
+  },
+];
+
+const education = [
+  "BSc Computer Software Engineering — Islamic Azad University, Tehran (2023–2025)",
+  "Associate Electrical Engineering — Esfahan TV College (2021–2023)",
+  "Computer Science — CS50x, Harvard (2023)",
+];
 
 export function AboutSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <AnimatedSection
+    <SectionShell
       id="about"
-      className="py-20 bg-background"
-      animation="fadeIn"
-      delay={0.1}
+      label="About"
+      index={1}
+      title="Building interfaces that ship and scale"
+      description="Front-end developer focused on performance, maintainability, and clean architecture."
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <p className="text-muted max-w-2xl mx-auto">
-            Get to know more about me and my journey in web development.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">My Journey</h3>
-            <p className="mb-4">
-              Experienced Front-End Developer proficient in React, Next.js, TypeScript, and modern JavaScript. Specializes
-              in creating scalable and high-performance web applications with a focus on fintech, e-commerce, and
-              dashboard projects. Strong commitment to front-end architecture and performance optimization, working
-              collaboratively with designers and back-end developers to create seamless, responsive, and reliable user
-              interfaces. Driven by a passion for enhancing speed, maintainability, and user experience through clean code
-              and efficient solutions. Eager to leverage technical expertise and ability to resolve complex technical
-              challenges in a forward-thinking team to develop impactful digital products.
+      <div className="grid gap-px bg-border md:grid-cols-2">
+        <motion.div
+          initial={prefersReducedMotion ? false : "hidden"}
+          whileInView={prefersReducedMotion ? undefined : "visible"}
+          viewport={{ once: true, margin: "-60px" }}
+          variants={staggerContainer}
+          className="panel bg-card p-6 md:col-span-2 md:p-10"
+        >
+          <motion.div variants={fadeUp}>
+            <p className="text-base leading-8 text-muted-foreground md:text-lg md:leading-9">
+              Experienced front-end developer specializing in scalable,
+              high-performance web applications. I work across fintech,
+              e-commerce, and dashboard products — collaborating with designers
+              and backend teams to deliver responsive, reliable interfaces.
+              Driven by clean code, speed, and user experience.
             </p>
-
-            <p className="mb-4">
-              Excited to join a team that values impactful digital solutions,
-              actively looking for a challenging role to leverage my skills.
+            <p className="mt-5 text-base leading-8 text-muted-foreground">
+              Looking for a team that values impactful digital products.
             </p>
+          </motion.div>
+          <motion.div variants={fadeUp} className="mt-8">
+            <Button asChild>
+              <Link
+                href="./Resume-Omid-Javaheri.pdf"
+                download
+                rel="noopener noreferrer"
+              >
+                Download CV
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
 
-            <h3 className="text-2xl font-bold mb-4 mt-8">
-              Education & Certification
-            </h3>
-            <ul className="space-y-2 mb-6">
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>
-                  BSc in Computer Software Engineering - Islamic Azad University
-                  Central Tehran Branch, Iran (2023-2025)
-                </span>
+        <motion.section
+          initial={prefersReducedMotion ? false : "hidden"}
+          whileInView={prefersReducedMotion ? undefined : "visible"}
+          viewport={{ once: true, margin: "-60px" }}
+          variants={fadeUp}
+          className="panel bg-card p-6 md:p-8"
+          aria-labelledby="education-heading"
+        >
+          <h3
+            id="education-heading"
+            className="font-mono-label text-[10px] uppercase tracking-[0.18em] text-primary"
+          >
+            Education
+          </h3>
+          <ul className="mt-5 space-y-4">
+            {education.map((item) => (
+              <li
+                key={item}
+                className="border-l border-border pl-4 text-sm leading-6 text-muted-foreground"
+              >
+                {item}
               </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>
-                  Associate of Electrical and Electronics Engineering - Esfahan
-                  Technical and Vocational College (2021-2023)
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Computer Science - CS50x (2023)</span>
-              </li>
-            </ul>
-            <Link
-              href="./Resume-Omid-Javaheri.pdf"
-              download
-              rel="noopener noreferrer"
-              className="cursor-pointer mt-4"
+            ))}
+          </ul>
+        </motion.section>
+
+        <motion.div
+          initial={prefersReducedMotion ? false : "hidden"}
+          whileInView={prefersReducedMotion ? undefined : "visible"}
+          viewport={{ once: true, margin: "-60px" }}
+          variants={staggerContainer}
+          className="grid gap-px bg-border"
+        >
+          {highlights.map(({ tag, title, body, open }) => (
+            <motion.section
+              key={title}
+              variants={fadeUp}
+              className="panel panel-hover bg-card p-6 md:p-8"
             >
-              <Button size="md" variant="secondary" className="cursor-pointer">
-                Download Resume
-              </Button>
-            </Link>
-          </div>
-          <div>
-            <AnimatedNotes />
-          </div>
-        </div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="font-mono-label text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                  {tag}
+                </span>
+                {open && (
+                  <Badge className="font-mono-label text-[9px] uppercase">
+                    Open
+                  </Badge>
+                )}
+              </div>
+              <h4 className="font-display text-lg font-semibold">{title}</h4>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {body}
+              </p>
+            </motion.section>
+          ))}
+        </motion.div>
       </div>
-    </AnimatedSection>
+    </SectionShell>
   );
 }
