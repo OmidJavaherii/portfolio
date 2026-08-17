@@ -49,7 +49,9 @@ export const metadata: Metadata = {
   publisher: site.name,
   robots: "index, follow",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
   },
 };
 
@@ -94,6 +96,7 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
           }}
         />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
       </head>
       <body
         className={`${manrope.variable} ${ibmPlexMono.variable} min-h-dvh antialiased`}

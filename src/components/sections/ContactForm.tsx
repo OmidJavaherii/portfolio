@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { site } from "@/data/site";
+
+function openMailClient(data: { name: string; email: string; message: string }) {
+  const subject = encodeURIComponent(`Portfolio message from ${data.name}`);
+  const body = encodeURIComponent(
+    `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`
+  );
+  window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+}
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -16,12 +25,12 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
   );
-  const [errorMessage, setErrorMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setErrorMessage("");
+    setStatusMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -30,21 +39,25 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(data.error || "Could not send the message.");
+      if (
+        response.ok &&
+        response.headers.get("content-type")?.includes("application/json")
+      ) {
+        setStatus("success");
+        setStatusMessage("Sent. I will get back to you.");
+        setFormData({ name: "", email: "", message: "" });
+        return;
       }
-
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      setStatus("error");
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "Could not send the message. Email is the reliable path."
-      );
+    } catch {
+      // Static export / local serve has no API route.
     }
+
+    openMailClient(formData);
+    setStatus("success");
+    setStatusMessage(
+      "Opening your email app. Send that message and I will get back to you."
+    );
+    setFormData({ name: "", email: "", message: "" });
   }
 
   return (
@@ -107,12 +120,12 @@ export function ContactForm() {
       </Button>
       {status === "success" && (
         <p className="text-sm text-foreground" role="status">
-          Sent. I will get back to you.
+          {statusMessage}
         </p>
       )}
       {status === "error" && (
         <p className="text-sm text-destructive" role="alert">
-          {errorMessage}
+          {statusMessage}
         </p>
       )}
     </form>
