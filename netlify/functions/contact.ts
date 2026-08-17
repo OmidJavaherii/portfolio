@@ -1,146 +1,74 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
-type ResponseData = {
-  message?: string;
-  error?: string;
-  details?: string;
-  debug?: {
-    platform?: string;
-    config?: {
-      host?: string;
-      port?: number;
-      secure?: boolean;
-      user?: string;
-      hasPass?: boolean;
-    };
-  };
-};
-
-// Netlify-specific handler
-export const handler = async function(event: any, context: any) {
-  if (event.httpMethod !== 'POST') {
+export const handler = async function (event: {
+  httpMethod: string;
+  body: string | null;
+}) {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method Not Allowed' })
+      body: JSON.stringify({ error: "Method Not Allowed" }),
     };
   }
 
   try {
-    const { name, email, message } = JSON.parse(event.body);
+    const { name, email, message } = JSON.parse(event.body || "{}");
 
     if (!name || !email || !message) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' })
+        body: JSON.stringify({ error: "Missing required fields" }),
       };
     }
 
-    // Verify environment variables
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      const error = {
-        error: 'Server configuration error',
-        details: 'Missing email configuration',
-        debug: { 
-          platform: 'netlify',
-          config: {
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            user: process.env.EMAIL_USER,
-            hasPass: !!process.env.EMAIL_PASS
-          }
-        }
-      };
+    const user = process.env.EMAIL_USER?.trim();
+    const pass = process.env.EMAIL_PASS?.trim();
+
+    if (!user || !pass) {
       return {
         statusCode: 500,
-        body: JSON.stringify(error)
+        body: JSON.stringify({ error: "Email is not configured." }),
       };
     }
 
-    // Create transporter
+    if (!user.includes("@")) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: "EMAIL_USER must be a full Gmail address, not a display name.",
+        }),
+      };
+    }
+
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: { rejectUnauthorized: false }
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user, pass },
     });
 
-    // Verify SMTP connection
-    try {
-      console.log('Verifying SMTP connection...');
-      await transporter.verify();
-      console.log('SMTP connection verified successfully');
-    } catch (error) {
-      console.error('SMTP verification failed:', error);
-      const errorResponse = {
-        error: 'Email service configuration error',
-        details: error instanceof Error ? error.message : 'Unknown error',
-        debug: {
-          platform: 'netlify',
-          config: {
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            user: process.env.EMAIL_USER,
-            hasPass: true
-          }
-        }
-      };
-      return {
-        statusCode: 500,
-        body: JSON.stringify(errorResponse)
-      };
-    }
-
-    // Email content
-    const mailOptions = {
-      from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+    await transporter.sendMail({
+      from: `"${name}" <${user}>`,
+      to: user,
       replyTo: email,
-      subject: `New Contact Form Submission from ${name}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Message: ${message}
-      `,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    };
-
-    // Send email
-    await transporter.sendMail(mailOptions);
+      subject: `Portfolio message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message}</p>`,
+    });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ 
-        message: 'Email sent successfully',
-        debug: { platform: 'netlify' }
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "Email sent successfully" }),
     };
-
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ 
-        error: 'Failed to send email. Please try again later.',
-        details: error instanceof Error ? error.message : 'Unknown error',
-        debug: {
-          platform: 'netlify',
-          errorName: error instanceof Error ? error.name : 'Unknown',
-          errorStack: error instanceof Error ? error.stack : undefined
-        }
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        error: "Failed to send email. Please try again later.",
+      }),
     };
   }
-}; 
+};
