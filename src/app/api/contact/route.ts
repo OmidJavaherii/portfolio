@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
@@ -12,21 +14,26 @@ export async function POST(req: Request) {
       );
     }
 
+    const user = process.env.EMAIL_USER;
+    const pass = process.env.EMAIL_PASS;
+
+    if (!user || !pass) {
+      return NextResponse.json(
+        { error: "Email is not configured." },
+        { status: 500 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+      host: "smtp.gmail.com",
+      port: 465,
       secure: true,
-      tls: {
-        rejectUnauthorized: false,
-      },
+      auth: { user, pass },
     });
 
     await transporter.sendMail({
-      from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      from: `"${name}" <${user}>`,
+      to: user,
       replyTo: email,
       subject: `Portfolio message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,

@@ -1,0 +1,5 @@
+/api
+/netlify
+/liara
+.env
+.env.*
