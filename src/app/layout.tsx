@@ -1,29 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Outfit } from "next/font/google";
+import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import "./globals.css";
-import { LayoutContent } from "@/components/layout/LayoutContent";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { footerData } from "@/data/footer";
-import { experiences } from "@/data/experiences";
-import { projects } from "@/data/projects";
+import { site, socialLinks } from "@/data/site";
+import { experiences } from "@/data/experience";
+import { createMetadata } from "@/lib/metadata";
 
-const outfit = Outfit({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-manrope",
   display: "swap",
 });
 
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-sans",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-plex-mono",
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -32,88 +27,59 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f5f8" },
-    { media: "(prefers-color-scheme: dark)", color: "#08090d" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F6F3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0C0F" },
   ],
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://omidjavaheri.ir"),
-  title: "Omid Javaheri — Front-End Developer",
-  description:
-    "Portfolio of Omid Javaheri — front-end developer building fast, polished web products with React, Next.js, and TypeScript.",
+  ...createMetadata({}),
+  metadataBase: new URL(site.domain),
   keywords: [
-    "portfolio",
-    "frontend developer",
+    "frontend engineer",
     "react",
     "next.js",
     "typescript",
+    "web3",
+    "fintech",
+    site.name,
   ],
-  authors: [{ name: "Omid Javaheri" }],
-  creator: "Omid Javaheri",
-  publisher: "Omid Javaheri",
-  robots: "index",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://omidjavaheri.ir",
-    siteName: "Omid Javaheri Portfolio",
-    title: "Omid Javaheri — Front-End Developer",
-    description:
-      "Portfolio of Omid Javaheri — front-end developer building fast, polished web products.",
-    images: [
-      {
-        url: "/images/profile.svg",
-        width: 500,
-        height: 500,
-        alt: "Omid Javaheri Portfolio",
-      },
-    ],
-  },
+  authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
+  robots: "index, follow",
   icons: {
     icon: "/favicon.svg",
-    apple: "/favicon.svg",
   },
-  manifest: "/manifest.json",
 };
 
-const domain = "https://omidjavaheri.ir";
 const schemaPerson = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: footerData.name,
-  jobTitle: experiences[0]?.title || "Frontend Developer",
-  url: domain,
-  image: `${domain}/images/profile.svg`,
-  sameAs: footerData.socialLinks.map((link) => link.url),
+  name: site.name,
+  jobTitle: site.role,
+  url: site.domain,
+  email: site.email,
+  image: `${site.domain}/images/profile.jpg`,
+  sameAs: socialLinks.map((link) => link.url),
   worksFor: {
     "@type": "Organization",
     name: experiences[0]?.company,
   },
-  alumniOf:
-    experiences.find((exp) =>
-      exp.company.includes("Islamic Azad University")
-    )?.company || "Islamic Azad University, Central Tehran Branch",
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Islamic Azad University, Central Tehran Branch",
+    },
+  ],
 };
 
 const schemaWebSite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: `${footerData.name} Portfolio`,
-  url: domain,
+  name: `${site.name} Portfolio`,
+  url: site.domain,
 };
-
-const schemaProjects = projects.map((project) => ({
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  name: project.title,
-  description: project.description,
-  url: project.preview || project.link || domain,
-  creator: {
-    "@type": "Person",
-    name: footerData.name,
-  },
-}));
 
 export default function RootLayout({
   children,
@@ -121,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -130,10 +96,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${outfit.variable} ${plexSans.variable} ${plexMono.variable} safe-top antialiased`}
+        className={`${manrope.variable} ${ibmPlexMono.variable} min-h-dvh antialiased`}
       >
         <ThemeProvider>
-          <LayoutContent>{children}</LayoutContent>
+          <SkipLink />
+          <SiteHeader />
+          <div id="main-content">{children}</div>
+          <SiteFooter />
         </ThemeProvider>
         <script
           type="application/ld+json"
@@ -142,10 +111,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebSite) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaProjects) }}
         />
       </body>
     </html>

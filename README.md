@@ -1,38 +1,14 @@
 # Omid Javaheri - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js 14, featuring smooth animations, and PWA capabilities.
+A personal portfolio for Omid Javaheri, built with Next.js, TypeScript, and Tailwind CSS.
 
-## 🌟 Features
+## Features
 
-- **Modern Tech Stack**
-  - Next.js 15 with App Router
-  - TypeScript for type safety
-  - Tailwind CSS for styling
-  - Lucide React for beautiful icons
-
-- **Responsive Design**
-  - Desktop-first approach
-  - Fully responsive layout
-  - Optimized for all screen sizes
-  - Safe area support for modern devices
-
-- **User Experience**
-  - Smooth scroll animations
-  - Loading states
-  - Custom 404 page
-  - Scroll to top button
-
-- **Performance**
-  - Optimized images
-  - Efficient animations
-  - Fast page loads
-  - SEO optimized
-
-- **PWA Support**
-  - Installable on desktop and mobile
-  - Offline capabilities
-  - Custom icons for various platforms
-  - iOS-specific optimizations
+- Next.js 15 App Router and TypeScript
+- Responsive layout for desktop, tablet, and mobile
+- Light and dark themes
+- SEO metadata, Open Graph, and sitemap
+- Production-ready static export
 
 ## 🚀 Getting Started
 
@@ -74,64 +50,23 @@ A modern, responsive portfolio website built with Next.js 14, featuring smooth a
 - [Next.js](https://nextjs.org/) - React framework for production
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [React Icons](https://react-icons.github.io/react-icons/) - Icon library
+- [Lucide](https://lucide.dev/) - Icons
 
-## 📱 PWA Installation
+## Customization
 
-### Desktop
-- Click the install button in the browser's address bar
-- Or use the "Install" button in the app
+Content lives in `src/data/`:
+- `site.ts` — name, contact, nav
+- `projects.ts` — case studies
+- `experience.ts` — roles
+- `about.ts` — biography
 
-### Mobile
-- iOS: Use the "Add to Home Screen" option in the share menu
-- Android: Click "Add to Home Screen" in the browser menu
+## Scripts
 
-## 🎨 Customization
+- `npm run dev` — development server
+- `npm run build` — production build
+- `npm run start` — start production server
+- `npm run lint` — ESLint
 
-### Colors
-The theme colors can be customized in `tailwind.config.ts`:
-```typescript
-colors: {
-  primary: {
-    DEFAULT: '#046D8B',
-    dark: '#035A73',
-  },
-  // ... other colors
-}
-```
+## Contact
 
-### Content
-- Update personal information in `src/data/personal.ts`
-- Modify projects in `src/data/projects.ts`
-- Edit experience in `src/data/experience.ts`
-
-## 📦 Project Structure
-
-```
-portfolio/
-├── public/
-│   ├── icons/          # PWA icons
-│   └── images/         # Static images
-├── src/
-│   ├── app/           # Next.js app router
-│   ├── components/    # React components
-│   ├── data/         # Content data
-│   ├── hooks/        # Custom hooks
-│   └── styles/       # Global styles
-└── package.json
-```
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-
-
-## 🤝 Contact
-
-
-Project Link: [https://github.com/omidjavaherii/portfolio](https://github.com/omidjavaherii/portfolio)
+[https://github.com/omidjavaherii/portfolio](https://github.com/omidjavaherii/portfolio)
